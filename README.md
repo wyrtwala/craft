@@ -1,6 +1,6 @@
 # craft
 ## My Foray into Computer Oriented Programming 
 
-I was learning the moldy crab language _yes you know the one_ and at first it seems sweet: lots of very cool things that we've _"always wanted"_, 
-but then it just keeps going. Eventually you get to the place where you realize that they tried to do too many intersecting things in the same place; OOP, 
-functional, procedural, imperitive, declaritive, iterative, recursive
+I was studying the _*Moldy Crab*_ and became _very_ frustrated because, as you can tell by the fact that it can't decide wether to be a plant or an animal, it can't seem to decide wether to swim or grow roots. It couldn't decide wether to be functional or oop, high level or low level, go or c (or even javascript); so it decided to be everything in it's own evil, twisted way. Also, it's type system is super cool... at the beginning. Then as it tries to go deeper into the ocean, the mold on it's back starts to die and strangles the life out of the crab.
+
+So, in an act of inordinate patience, instead of just throwing everything away, because I mean, _*you* try and wtite a number on a list inside a box set on an arrow floating in a river while riding an OCaml_; I decided to mull it over a bit.
