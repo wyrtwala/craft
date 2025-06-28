@@ -1,5 +1,5 @@
-<span style="color:gray">::standard craft library, shipped with craft::</span>
-[paste] tools craft
+::standard craft library, shipped with craft::
+$\color{#87CEEB}{[paste]}$ tools craft
 
 
 ::all variables initialize automatically as all zeros::
