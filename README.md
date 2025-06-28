@@ -1,7 +1,7 @@
 # CRAFT
 ## My Foray into Computer Oriented Programming 
 
-I was studying ***Moldy Crab Lang*** and became _very_ frustrated because, as you can tell by the fact that even it can't decide wether to be a plant or an animal, it has no idea what it wants to be. It couldn't decide wether to be FP or OOP, high level or low level, go or c (or even javascript); so it decided to be everything in it's own evil, mean, twisted way. It's type system looks super cool... at the beginning; then as the crab tries to go deeper into the ocean, the mold on it's back starts to die and rot and strangles the life out of the crab.
+I was studying ***Moldy Crab Lang*** and became _very_ frustrated because, as you can tell by the fact that even it can't decide wether to be a plant or an animal, it has no idea what it wants to be. It couldn't decide wether to be FP or OOP, high level or low level, go or c (or even javascript); so it decided to be everything in it's own evil, mean, twisted way. It's type system looks super cool... at the beginning; then as the crab tries to go deeper into the ocean, the mold on it's back starts to die and rot and strangles the life out of the crab. (I'm not going to talk about lifetimes because I don't want anyone to blame me for lasting mental damage)
 
 So, in an act of inordinate patience, instead of just throwing everything away, because I mean, ***you*** try and write:  
 
