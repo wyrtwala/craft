@@ -1,17 +1,27 @@
-# craft
+# CRAFT
 ## My Foray into Computer Oriented Programming 
 
-I was studying the _*Moldy Crab*_ and became _very_ frustrated because, as you can tell by the fact that it can't decide wether to be a plant or an animal, it can't seem to decide wether to swim or grow roots. It couldn't decide wether to be functional or oop, high level or low level, go or c (or even javascript); so it decided to be everything in it's own evil, twisted way. Also, it's type system is super cool... at the beginning. Then as it tries to go deeper into the ocean, the mold on it's back starts to die and strangles the life out of the crab.
+I was studying ***Moldy Crab Lang*** and became _very_ frustrated because, as you can tell by the fact that even it can't decide wether to be a plant or an animal, it has no idea what it wants to be. It couldn't decide wether to be FP or OOP, high level or low level, go or c (or even javascript); so it decided to be everything in it's own evil, mean, twisted way. It's type system looks super cool... at the beginning; then as the crab tries to go deeper into the ocean, the mold on it's back starts to die and rot and strangles the life out of the crab.
 
-So, in an act of inordinate patience, instead of just throwing everything away, because I mean, _**you** try and write 
-<a number on  
-<a list inside  
-<a box set on  
-<an arrow floating in  
-<a river while riding an  
-\<OCaml>>>>>>_; I decided to mull it over a bit.
+So, in an act of inordinate patience, instead of just throwing everything away, because I mean, ***you*** try and write:  
 
-As I kept thinking more about it, I had a epiphany:  
-_**OOP is fake, and FP is a lie**_.  
+_<a number on_  
+_<a list inside_  
+_<a box set on_  
+_<an arrow floating in_  
+_<a river while riding an_  
+_\<OCaml>>>>>>;_  (and yes, every crab rider reading this knows exactly what that means)
 
-Object *Oriented* Programming is an ideal based on something that doesn't exist: your computer has no idea what a type is.
+I decided to mull it over a bit.
+
+As I kept thinking more about it, I had a epiphany: ***OOP is fake, and FP is a lie***.  
+
+OOP is an entire ideal of how to _orient_ your programming, but it's based on something that doesn't even exist.
+
+Did you know that your computer has no idea what an object _even is_? It has no bloody idea. Here's a _Hot Take_: Your computer **only** deals in ones and zeros and their manipulation, _period_.
+
+And don't get me started on FP. It is by far the best way to get in your own way while making yourself feel cool and take _17*longer_. Also, and I _dare_ you to tell me I'm wrong with a straight face, it has nothing to do how you computer does _**anything**_. (Don't lie to yourself)
+
+I stewed in my own moldy crab soup for a while before deciding I would do something about it, my answer:
+
+COP: Computer Oriented Programming, and [CRAFT](https://github.com/wyrtwala/craft/edit/main/syntax.md)
