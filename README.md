@@ -18,7 +18,7 @@ As I kept thinking more about it, I had a epiphany: ***OOP is fake, and FP is a 
 
 OOP is an entire ideal of how to _orient_ your programming, but it's based on something that doesn't even exist.
 
-Did you know that your computer has no idea what an object _even is_? It has no bloody idea. Here's a _Hot Take_: Your computer **only** deals in ones and zeros and their manipulation, _period_.
+Did you know that your computer has no idea what an object _even is_? It has no bloody idea. It doesn't understand TRUE or FALSE, has no idea what a float/double is, and couldn't even be bothered with the difference between a short and a char amongst other things. Here's a _Hot Take_: Your computer **only** deals in ones and zeros and their manipulation, _period_.
 
 And don't get me started on FP. It is by far the best way to get in your own way while making yourself feel cool and take _17*longer_. Also, and I _dare_ you to tell me I'm wrong with a straight face, it has nothing to do how you computer does _**anything**_. (Don't lie to yourself)
 
