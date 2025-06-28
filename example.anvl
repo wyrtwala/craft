@@ -1,4 +1,4 @@
-::standard craft library, shipped with craft::
+<span class="code-comment">::standard craft library, shipped with craft::</span>
 [paste] tools craft
 
 
