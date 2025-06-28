@@ -1,68 +1,68 @@
-basic craft syntax
+# basic craft syntax
 
-comments are placed inside two sets of double colons ***::comment::*** and may be single line or multiple line.  
+comments are placed inside two sets of double colons $\color{#B0B0B0}{::comment::}$ and may be single line or multiple line.  
 
-anything inside ***parentheses()*** is considered a single unit.  
+anything inside $\color{#B0B0B0}{parentheses()}$ is considered a single unit.  
 
-functions names are placed inside square braces **[]**.  
-  + if written before **[run]** and outside of any other function declaration,it is taken to be a declaration, anywhere else is an implementation
+functions names are placed inside square braces $\color{#87CEEB}{[]}$.  
+  + if written before $\color{#87CEEB}{[run]}$ and outside of any other function declaration,it is taken to be a declaration, anywhere else is an implementation
   + every function recieves two and only two variables 
   + every function returns one and only one value
 
-**[paste]** *:filepath* *:protocol*(local default, craft, git, ssh, wget)   
+$\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:filepath}$ $\color{#EBA487}{:protocol}$ $\color{#B0B0B0}{(local, craft, git, ssh, wget)}$  
   + file is included in it's entirity at command location  
-  + file is copied only until encountering **[run]**
+  + file is copied only until encountering $\color{#87CEEB}{[run]}$
 
-**[run]**  
+$\color{#87CEEB}{[run]}$ $\color{#E2CA76}{}$
   + starts process at current line  
 
-**[stack]** _:name_ _:array count_  
+$\color{#87CEEB}{[stack]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:array count}$  
   + create stack variable  
   + all are 64 bit with no type and initiate as 0 bits  
   + stack arrays cannot be resized  
 
-**[heap]** *:name* *:beginning array count*  
+$\color{#87CEEB}{[heap]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:beginning array count}$  
   + create heap variable
   + all heap variables are arrays, if no array count declared default is 1
   + all variables are 64 bit with no type and initiate as 0 bits
 
-**[select]** *:variable* *:offset* (starting at zero)
+$\color{#87CEEB}{[select]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:offset}$ $\color{#B0B0B0}{(starting at zero)}$
 
-**[craft]** *:variable/value* *:translation*
+$\color{#87CEEB}{[craft]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:translation}$
 
-**[move]** *:variable* *:value*
+$\color{#87CEEB}{[move]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:value}$
 
-**[if]** *:condition* *:action*
+$\color{#87CEEB}{[if]}$ $\color{#E2CA76}{:condition}$ $\color{#EBA487}{:action}$
 
-**[jump]** *:mark* *:condition*
+$\color{#87CEEB}{[jump]}$ $\color{#E2CA76}{:mark}$ $\color{#EBA487}{:condition}$
 
-**[mark]** *:name* :??
+$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:??}$
 
-**[add]** *:variable/value* *:variable/value*
+$\color{#87CEEB}{[add]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$
 
-**[sub]** *:variable/value* *:variable/value*
+$\color{#87CEEB}{[sub]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$
 
-**[mul]** *:variable/value* *:variable/value*
+$\color{#87CEEB}{[mul]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$
 
-**[div]** *:variable/value* *:variable/value*
+$\color{#87CEEB}{[div]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$
 
-**[mod]** *:variable/value* *:variable/value*
+$\color{#87CEEB}{[mod]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$
 
-**[=/!=/</<=/>/>=]** *:variable/value* *:variable/value*  
+$\color{#87CEEB}{[=/!=/</<=/>/>=]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:variable/value}$  
 + returns `/0{64}/` on false, `/0{63}1{1}/` on true
 
-**[free]** *:variable* *:after how many lines will the variable be freed*
+$\color{#87CEEB}{[free]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:after how many lines will the variable be freed}$
 
-**[point]** *:variable* *:offset* 
+$\color{#87CEEB}{[point]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:offset}$ 
   + dereference variable at given offset
 
-**[address]** *:variable* *:offset*
+$\color{#87CEEB}{[address]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:offset}$
   + returns variable address at given offset (for arrays)
 
-**[resize]** *:variable* *:newsize*
+$\color{#87CEEB}{[resize]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:newsize}$
 
-**[regex]** *:variable/value* *:regex to compare*
+$\color{#87CEEB}{[regex]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:regex to compare}$
 
-**square braces[]** themselves can be placed around any value that contains spaces to force it to be considered a single entity
+$\color{#87CEEB}{square braces[]}$ themselves can be placed around any value that contains spaces to force it to be considered a single entity
 
 you can see an example [here](https://github.com/wyrtwala/craft/edit/main/example.anvl)
