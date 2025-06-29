@@ -66,6 +66,13 @@ $\color{#87CEEB}{[resize]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:newsi
 
 $\color{#87CEEB}{[regex]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:regex-to-compare}$
 
+$\color{#87CEEB}{[system-call]}$ $\color{#E2CA76}{:system-call}$ $\color{#EBA487}{:[argument-string]}$
+
+$\color{#87CEEB}{[read]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:where-from}$
+
+$\color{#87CEEB}{[write]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:where-to}$
+
 $\color{#87CEEB}{square braces[]}$ themselves can be placed around any value that contains spaces to force it to be considered a single entity
+
 
 you can see an example [here](https://github.com/wyrtwala/craft/edit/main/example.anvl)
