@@ -14,7 +14,7 @@ $\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:filepath}$ $\color{#EBA487}{:protoc
   + file is copied only until encountering $\color{#87CEEB}{[run]}$
 
 
-$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:??}$
+$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:count}$
 
 $\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[run]}$ $\color{EBA487}{0}$
   + starts process at current line  
@@ -72,7 +72,13 @@ $\color{#87CEEB}{[read]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:where-f
 
 $\color{#87CEEB}{[write]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:where-to}$
 
-$\color{#87CEEB}{square braces[]}$ themselves can be placed around any value that contains spaces to force it to be considered a single entity
+$\color{#87CEEB}{[return]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:(return-to-mark/0)}$
+
+$\color{#87CEEB}{[error]}$ $\color{#E2CA76}{:description/value}$ $\color{#EBA487}{:(panic\log)}$
+
+
+
+$\color{#87CEEB}{square braces[]}$ themselves can be placed around any value that contains spaces to consider it a single entity
 
 
 you can see an example [here](https://github.com/wyrtwala/craft/edit/main/example.anvl)
