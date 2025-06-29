@@ -33,7 +33,7 @@ $\color{#87CEEB}{[select]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:offse
 
 $\color{#87CEEB}{[craft]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:translation}$
   + \>(oct, dec, hex, ascii, utf8)
-  + <(oct, dec, hex, ascii, utf8)
+  + (oct, dec, hex, ascii, utf8)>
 
 $\color{#87CEEB}{[move]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:value}$
 
