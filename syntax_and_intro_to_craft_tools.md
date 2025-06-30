@@ -14,7 +14,7 @@ $\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:filepath}$ $\color{#EBA487}{:protoc
   + file is copied only until encountering $\color{#87CEEB}{[run]}$
 
 
-$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:count}$
+$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:count}$ $\color{#B0B0B0}{(maximum-times-mark-can-be-reached/0=infinite)}$
 
 $\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[run]}$ $\color{EBA487}{0}$
   + starts process at current line  
