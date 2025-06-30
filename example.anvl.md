@@ -42,8 +42,8 @@ $\color{#87CEEB}{[return]}$ $\color{#E2CA76}{[stack single value]}$ $\color{#EBA
 $\color{#87CEEB}{[test function]}$  
 
 
-$\color{#87CEEB}{}$ $\color{#E2CA76}{}$ $\color{#EBA487}{}$ 
-$\color{#B0B0B0}{parentheses()}$
+ 
+
 
 
 
@@ -56,4 +56,23 @@ $\color{#B0B0B0}{parentheses()}$
 
 
 $\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[run]}$ $\color{#EBA487}{0}$  
-  
+$\color{#87CEEB}{}$ $\color{#E2CA76}{}$ $\color{#EBA487}{}$  
+$\color{#B0B0B0}{parentheses()}$
+
+
+$\color{#87CEEB}{[stack]}$ $\color{#E2CA76}{counter}$ $\color{#EBA487}{0}$  
+$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[example-if]}$ $\color{#EBA487}{0}$  
+$\color{#87CEEB}{[write]}$ $\color{#E2CA76}{counter}$ $\color{#EBA487}{stdout}$  
+$\color{#87CEEB}{[jump]}$ $\color{#E2CA76}{(}$  
+$\color{#87CEEB}{<}$ $\color{#E2CA76}{counter}$ $\color{#EBA487}{(}$  
+$\color{#87CEEB}{[craft]}$ $\color{#E2CA76}{0}$ $\color{#EBA487}{dec>}$  
+$\color{#EBA487}{)}$ $\color{#E2CA76}{)}$ $\color{#EBA487}{[example-if]}$  
+
+
+
+
+
+
+
+
+
