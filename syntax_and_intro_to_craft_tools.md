@@ -5,18 +5,18 @@ comments are placed inside two sets of double colons $\color{#B0B0B0}{::comment:
 anything inside $\color{#B0B0B0}{parentheses()}$ is considered a single unit.  
 
 functions names are placed inside square braces $\color{#87CEEB}{[]}$.  
-  + if written before $\color{#87CEEB}{[run]}$ and outside of any other function declaration,it is taken to be a declaration, anywhere else is an implementation
+  + if written before $\color{#33DB98}{[run]}$ and outside of any other function declaration,it is taken to be a declaration, anywhere else is an implementation
   + every function recieves two and only two variables 
   + every function returns one and only one value
 
 $\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:filepath}$ $\color{#EBA487}{:protocol}$ $\color{#B0B0B0}{(local, craft, git, ssh, wget)}$  
   + file is included in it's entirity at command location  
-  + file is copied only until encountering $\color{#87CEEB}{[run]}$
+  + file is copied only until encountering $\color{#33DB98}{[run]}$
 
 
 $\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:count}$ $\color{#B0B0B0}{(maximum-times-mark-can-be-reached/0=infinite)}$
 
-$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[run]}$ $\color{EBA487}{0}$
+$\color{#87CEEB}{[mark]}$ $\color{#33DB98}{[run]}$ $\color{EBA487}{0}$
   + starts process at current line  
 
 $\color{#87CEEB}{[stack]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:array-count}$  
