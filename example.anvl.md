@@ -55,9 +55,8 @@ $\color{#87CEEB}{[test function]}$
 
 
 
-$\color{#87CEEB}{[mark]}$ $\color{#E2CA76}{[run]}$ $\color{#EBA487}{0}$  
-$\color{#87CEEB}{}$ $\color{#E2CA76}{}$ $\color{#EBA487}{}$  
-$\color{#B0B0B0}{parentheses()}$
+$\color{#87CEEB}{[mark]}$ $\color{#33DB98}{[run]}$ $\color{#EBA487}{0}$  
+
 
 
 $\color{#87CEEB}{[stack]}$ $\color{#E2CA76}{counter}$ $\color{#EBA487}{0}$  
