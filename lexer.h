@@ -1,53 +1,48 @@
-/// gettok - Return the next token from standard input.
-static int gettok() {
-  static int LastChar = ' ';
+#include <ctype.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-  // Skip any whitespace.
-  while (isspace(LastChar)){
-    LastChar = getchar();
-    if (isalpha(LastChar)) { // identifier: [a-zA-Z][a-zA-Z0-9]*
-      IdentifierStr = LastChar;
-      while (isalnum(LastChar = getchar())){
-        IdentifierStr += LastChar;
+#DEFINE TOK_LPARA          (0)
+#DEFINE TOK_RPARA          (1)
+#DEFINE TOK_ELEM           (2)
+#DEFINE TOK_EXTD_ELEM      (3)
+#DEFINE TOK_EOF            (4)
+
+typedef struct {
+  uint64_t TOK;
+  char ELEMENT[999];
+} token;
+
+char tok_buff[999];
+static extern uint64_t extend = 0;
+
+token get_tok(FILE* input) {
+  char chr = '';
+  token new_tok;
+  while (true) {
+    chr = (char)fgetc(input)
+    switch (chr) {
+      case '(':
+        new_tok->TOK = TOK_LPARA;
+        return new_tok;
+      case ')':
+        new_tok->TOK = TOK_RPARA;
+        return new_tok;
+      case EOF:
+        new_tok->TOK = TOK_EOF;
+        return new_tok;
+      default:
+        if (extend == 0){
+          new_tok->TOK = TOK_ELEM;
+          new_tok->ELEMENT = get_element(input);
+          return new_tok;
+        } else {
+          new_tok->TOK = TOK_EXTD_ELEM;
+          new_tok->ELEMENT = get_element(input);
+          return new_tok;
+        }
       }
     }
-  }
-
-  
-  if (IdentifierStr == "def")
-    return tok_def;
-  if (IdentifierStr == "extern")
-    return tok_extern;
-  return tok_identifier;
-
-  if (isdigit(LastChar) || LastChar == '.') {   // Number: [0-9.]+
-    std::string NumStr;
-    do {
-      NumStr += LastChar;
-      LastChar = getchar();
-    } while (isdigit(LastChar) || LastChar == '.');
-
-    NumVal = strtod(NumStr.c_str(), 0);
-    return tok_number;
-  }
-
-  if (LastChar == '#') {
-  // Comment until end of line.
-    do
-      LastChar = getchar();
-    while (LastChar != EOF && LastChar != '\n' && LastChar != '\r');
-
-    if (LastChar != EOF)
-      return gettok();
-  }
-
-    // Check for end of file.  Don't eat the EOF.
-    if (LastChar == EOF)
-      return tok_eof;
-
-    // Otherwise, just return the character as its ascii value.
-    int ThisChar = LastChar;
-    LastChar = getchar();
-    return ThisChar;
-  }
 }
