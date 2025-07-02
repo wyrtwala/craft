@@ -20,7 +20,34 @@ typedef struct {
 char tok_buff[999];
 static extern uint64_t extend = 0;
 
-token get_tok(FILE* input) {
+char* get_element(FILE* runner) {
+  char* element;
+  element=(char *)calloc(999, sizeof(char));
+  if ((char c = getchar(runner) == '[') {
+    extend = 1;
+  }
+  switch extend {
+    case 0:
+      element = get_word(runner, element);
+    case 1:
+      //TODO
+    case 2:
+      //TODO
+  }
+}
+
+char* get_word(FILE *runner, char *word) {
+  uint64_t point = 0;
+  uint64_t rcount = 999
+  while (!isspace(c = fgetc(runner)) && rcount > 0) {
+    word[point] = c;
+    point++;
+    rcount--;
+  }
+  return word
+}
+
+extern token get_tok(FILE* input) {
   char chr = '';
   token new_tok;
   while (true) {
@@ -38,11 +65,11 @@ token get_tok(FILE* input) {
       default:
         if (extend == 0){
           new_tok->TOK = TOK_ELEM;
-          new_tok->ELEMENT = get_element(input);
+          new_tok->ELEMENT = &get_element(input);
           return new_tok;
         } else {
           new_tok->TOK = TOK_EXTD_ELEM;
-          new_tok->ELEMENT = get_element(input);
+          new_tok->ELEMENT = &get_element(input);
           return new_tok;
         }
       }
