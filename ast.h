@@ -1,3 +1,5 @@
+#ifndef AST_H
+#define AST_H
 #include "lexer.h"
 
 enum node_type {
@@ -66,3 +68,4 @@ node* parse_ast() {
   
   
 }
+#endif AST_H
