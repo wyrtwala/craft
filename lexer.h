@@ -1,14 +1,16 @@
+#ifndef LEXER_H
+#define LEXER_H
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#DEFINE TOK_LPARA          (0)
-#DEFINE TOK_RPARA          (1)
-#DEFINE TOK_ELEM           (2)
-#DEFINE TOK_EXTD_ELEM      (3)
-#DEFINE TOK_EOF            (4)
+#define TOK_LPARA          (0)
+#define TOK_RPARA          (1)
+#define TOK_ELEM           (2)
+#define TOK_EXTD_ELEM      (3)
+#define TOK_EOF            (4)
 
 typedef struct {
   uint64_t TOK;
@@ -46,3 +48,4 @@ token get_tok(FILE* input) {
       }
     }
 }
+#endif LEXER_H
