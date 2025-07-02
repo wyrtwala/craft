@@ -17,7 +17,6 @@ typedef struct {
   char ELEMENT[999];
 } token;
 
-char tok_buff[999];
 static extern uint64_t extend = 0;
 
 char* get_element(FILE* runner) {
