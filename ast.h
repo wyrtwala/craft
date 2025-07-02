@@ -1,6 +1,7 @@
 #include "lexer.h"
 
 enum node_type {
+  ROOT,
   PASTE,
   MARK,
   STACK,
@@ -41,19 +42,22 @@ enum node_type {
   ELEMENT
 }
 
-
 typedef struct {
   node* left;
   node* right;
+  node* mother;
   uint64_t node_type;
+  char content[]; //??maybe
 } node;
 
 node* create_node() {
   
 }
 
-void link_node() {
-  
+uint64_t link_node() {
+    
+}
+uint64_t find_node() {
   
 }
 
