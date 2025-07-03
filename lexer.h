@@ -1,10 +1,13 @@
 #ifndef LEXER_H
 #define LEXER_H
+
+
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 
 #define TOK_LPARA          (0)
 #define TOK_RPARA          (1)
@@ -12,10 +15,12 @@
 #define TOK_EXTD_ELEM      (3)
 #define TOK_EOF            (4)
 
+
 typedef struct {
   uint64_t TOK;
   char ELEMENT[999];
 } token;
+
 
 static extern uint64_t extend = 0;
 
@@ -35,6 +40,7 @@ char* get_word(FILE *runner, char *word) {
   return word;
 }
 
+
 char* get_sb_word(FILE *runner, char *word) {
   uint64_t point = 0;
   uint64_t rcount = 999;
@@ -53,6 +59,7 @@ char* get_sb_word(FILE *runner, char *word) {
   return word;
 }
 
+
 char* get_element(FILE* runner) {
   char* element;
   element=(char *)calloc(999, sizeof(char));
@@ -63,6 +70,7 @@ char* get_element(FILE* runner) {
   } else {
     ungetc((char)c, runner);
   }
+
   
   switch extend {
     case 0:
@@ -71,7 +79,6 @@ char* get_element(FILE* runner) {
       element = get_sb_word(runner, element);
   }
 }
-
 
 
 extern token get_tok(FILE* input) {
@@ -102,5 +109,6 @@ extern token get_tok(FILE* input) {
       }
     }
 }
+
 
 #endif LEXER_H
