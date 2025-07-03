@@ -2,6 +2,7 @@
 #define AST_H
 #include "lexer.h"
 
+
 enum node_type {
   ROOT,
   MARK,
@@ -42,7 +43,8 @@ enum node_type {
   FUNCTION,
   DEC_FUNCTION,
   ELEMENT
-}
+};
+
 
 typedef struct {
   node* left;
@@ -52,20 +54,40 @@ typedef struct {
   char* content; //??maybe
 } node;
 
-node* create_node() {
-  
+
+enum token_side {
+  LEFT
+  RIGHT
+};
+
+
+node* create_node(node_type tok_type, char* cont) { 
+  node* newnode;
+  newnode=(node *)calloc(1, sizeof(node);
+  newnode->node_type = tok_type;
+  newnode->content = &cont;
+  return newnode;
+}
+node* link_node(token tok_m, token_side side, token tok_d) {
+  //TODO
+}
+node* mother_node(node* this_node) {
+  return this_node->mother;
+}
+node* left_node(node* this_node) {
+  return this_node->left;
+}
+node* left_node(node* this_node) {  
+  return this_node->right;
 }
 
-uint64_t link_node() {
-    
-}
-uint64_t find_node() {
-  
+
+extern node* parse_ast() {
+  node* current_node = create_node(ROOT, "\0");
+  node* next_node;
+  //TODO
+  //TODO
 }
 
-node* parse_ast() {
-  node root = 
-  
-  
-}
+
 #endif AST_H
