@@ -4,7 +4,6 @@
 
 enum node_type {
   ROOT,
-  PASTE,
   MARK,
   STACK,
   HEAP,
@@ -40,7 +39,7 @@ enum node_type {
   RETURN,
   ERROR,
   FUNCTION,
-  VARIABLE,
+  DEC_FUNCTION,
   ELEMENT
 }
 
@@ -49,7 +48,7 @@ typedef struct {
   node* right;
   node* mother;
   uint64_t node_type;
-  char content[]; //??maybe
+  char* content; //??maybe
 } node;
 
 node* create_node() {
