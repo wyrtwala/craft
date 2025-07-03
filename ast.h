@@ -7,6 +7,7 @@ enum node_type {
   MARK,
   STACK,
   HEAP,
+  DATA,
   FOLLOW,
   CRAFT,
   MOVE,
