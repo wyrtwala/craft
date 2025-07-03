@@ -19,32 +19,60 @@ typedef struct {
 
 static extern uint64_t extend = 0;
 
-char* get_element(FILE* runner) {
-  char* element;
-  element=(char *)calloc(999, sizeof(char));
-  if ((char c = getchar(runner) == '[') {
-    extend = 1;
-  }
-  switch extend {
-    case 0:
-      element = get_word(runner, element);
-    case 1:
-      //TODO
-    case 2:
-      //TODO
-  }
-}
 
 char* get_word(FILE *runner, char *word) {
   uint64_t point = 0;
-  uint64_t rcount = 999
+  uint64_t rcount = 999;
   while (!isspace(c = fgetc(runner)) && rcount > 0) {
+    if (c == ')') {
+      ungetc((char)c, runner);
+      return word;
+    }
     word[point] = c;
     point++;
     rcount--;
   }
-  return word
+  return word;
 }
+
+char* get_sb_word(FILE *runner, char *word) {
+  uint64_t point = 0;
+  uint64_t rcount = 999;
+  if (char c = fgetc(runner) != '[') {
+    //call parsing error
+  }
+  while (!isspace(c = fgetc(runner)) && rcount > 0) {
+    if (c == ']') {
+      extend = 0;
+      return word;
+    }
+    word[point] = c;
+    point++;
+    rcount--;
+  }
+  return word;
+}
+
+char* get_element(FILE* runner) {
+  char* element;
+  element=(char *)calloc(999, sizeof(char));
+  
+  if ((char c = getchar(runner) == '[') {
+    extend = 1;
+    ungetc((char)c, runner);
+  } else {
+    ungetc((char)c, runner);
+  }
+  
+  switch extend {
+    case 0:
+      element = get_word(runner, element);
+    case 1:
+      element = get_sb_word(runner, element);
+  }
+}
+
+
 
 extern token get_tok(FILE* input) {
   char chr = '';
@@ -74,4 +102,5 @@ extern token get_tok(FILE* input) {
       }
     }
 }
+
 #endif LEXER_H
