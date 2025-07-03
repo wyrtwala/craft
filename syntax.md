@@ -29,6 +29,9 @@ $\color{#87CEEB}{[heap]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:initial-arr
   + all heap variables are arrays, if no array count declared default is 1
   + all variables are 64 bit with no type and initiate as 0 bits
 
+$\color{#87CEEB}{[data]}$ $\color{#E2CA76}{:name}$ $\color{#EBA487}{:initial-array-count}$  
+  + if you know you know
+
 $\color{#87CEEB}{[follow]}$ $\color{#E2CA76}{:variable}$ $\color{#EBA487}{:offset}$ $\color{#B0B0B0}{(starting at zero)}$
 
 $\color{#87CEEB}{[craft]}$ $\color{#E2CA76}{:variable/value}$ $\color{#EBA487}{:translation}$
