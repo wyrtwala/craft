@@ -47,6 +47,7 @@ char* get_sb_word(FILE *runner, char *word) {
   if (char c = fgetc(runner) != '[') {
     //call parsing error
   }
+  extend = 1;
   while (!isspace(c = fgetc(runner)) && rcount > 0) {
     if (c == ']') {
       extend = 0;
@@ -63,21 +64,14 @@ char* get_sb_word(FILE *runner, char *word) {
 char* get_element(FILE* runner) {
   char* element;
   element=(char *)calloc(999, sizeof(char));
-  
-  if ((char c = getchar(runner) == '[') {
-    extend = 1;
-    ungetc((char)c, runner);
+  extend = fgetc(runner) == '[';
+  ungetc((char)c, runner);
+  if (extend == 0) {
+    element = get_word(runner, element);
   } else {
-    ungetc((char)c, runner);
+    element = get_sb_word(runner, element);
   }
-
-  
-  switch extend {
-    case 0:
-      element = get_word(runner, element);
-    case 1:
-      element = get_sb_word(runner, element);
-  }
+  return element;
 }
 
 
