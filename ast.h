@@ -3,55 +3,12 @@
 #include "lexer.h"
 
 
-enum node_type {
-  ROOT,
-  MARK,
-  STACK,
-  HEAP,
-  DATA,
-  FOLLOW,
-  CRAFT,
-  MOVE,
-  IF,
-  JUMP,
-  ADD,
-  SUB,
-  MUL,
-  DIV,
-  NE,
-  EQ,
-  GT,
-  GE,
-  LT,
-  LE,
-  BIT_AND,
-  BIT_OR,
-  BIT_XOR,
-  BIT_NOT,
-  BIT_SLEFT,
-  BIT_SRIGHT,
-  FREE,
-  POINT,
-  ADDRESS,
-  RESIZE,
-  REGEX,
-  SYS_CALL,
-  READ,
-  WRITE,
-  RETURN,
-  ERROR,
-  FUNCTION,
-  DEC_FUNCTION,
-  ELEMENT
-};
-
 
 typedef struct {
   node* left;
   node* right;
   node* mother;
-  uint64_t node_type;
-  char* content; //??maybe
+  token* TOK;
 } node;
 
 
@@ -61,11 +18,10 @@ enum token_side {
 };
 
 
-node* create_node(node_type tok_type, char* cont) { 
+node* create_node(token* tok) { 
   node* newnode;
   newnode=(node *)calloc(1, sizeof(node);
-  newnode->node_type = tok_type;
-  newnode->content = &cont;
+  newnode.TOK = &tok;
   return newnode;
 }
 node* link_node(token tok_m, token_side side, token tok_d) {
@@ -83,7 +39,7 @@ node* left_node(node* this_node) {
 
 
 extern node* parse_ast() {
-  node* current_node = create_node(ROOT, "\0");
+  node* current_node = create_node(//TODO);
   node* next_node;
   //TODO
   //TODO
