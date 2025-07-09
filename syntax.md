@@ -12,7 +12,7 @@ functions names are placed inside square braces $\color{#87CEEB}{[]}$.
 
 $\color{#87CEEB}{[return]}$ $\color{#33DB98}{size}$ $\color{EBA487}{variable}$
 
-$\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:filepath}$ $\color{#EBA487}{:protocol}$ $\color{#B0B0B0}{(local, craft, git, ssh, wget)}$  
+$\color{#87CEEB}{[paste]}$ $\color{#E2CA76}{:protocol}$ $\color{#B0B0B0}{(craft ::builtins::, local, web)}$ $\color{#EBA487}{:path}$   
   + file is included in it's entirity at command location  
   + file is copied only until encountering $\color{#33DB98}{[run]}$
 
