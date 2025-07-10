@@ -90,7 +90,7 @@ void comment(FILE* runner) {
 }
 
 
-extern token get_tok(FILE* input) {
+token get_tok(FILE* input) {
   char chr = ' ';
   token new_tok;
   while (true) {
