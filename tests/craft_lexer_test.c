@@ -1,4 +1,4 @@
-#include "../lib/craft_lexer.h"
+#include "../lib/lexer.h"
 #include <stdio.h>
 
 
