@@ -6,7 +6,7 @@
 
 
 int main() {
-	FILE *fd = fopen("example.anvl", "r+");
+	FILE *fd = fopen("craft_tests.anvl", "r+");
 	token tiktak = get_tok(fd);
 	while (true) {
 		if (tiktak.TOK != TOK_EOF) {
