@@ -24,4 +24,4 @@ And don't get me started on FP. It is by far the best way to get in your own way
 
 I stewed in my own moldy crab soup for a while before deciding I would do something about it, my answer:
 
-COP: Computer Oriented Programming, and [CRAFT](https://github.com/wyrtwala/craft/edit/main/syntax.md)
+COP: Computer Oriented Programming, and [CRAFT](https://github.com/wyrtwala/craft/edit/main/syntax.md) a.k.a. *assembly for idiots*
