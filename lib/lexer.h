@@ -19,21 +19,30 @@
 
 typedef struct {
   uint64_t TOK;
+  uint64_t LN;
   char *ELEMENT;
 } token;
 
 
-static uint64_t extend = 0;
+static uint64_t extend     = 0;
+static uint64_t linenumber = 1;
 
+char cgetc(FILE* input) {
+	char c = fgetc(input);
+	if (c == '\n') {
+		linenumber++;
+	}
+	return c;
+}
 
 char* get_word(FILE *runner, char *word) {
   uint64_t point = 0;
   uint64_t rcount = 999;
-  char c = fgetc(runner);
+  char c = cgetc(runner);
   uint64_t brak = 0;
   if (c == '[') {
     brak = 1;
-    c = fgetc(runner);
+    c = cgetc(runner);
   }
   while (rcount > 0) {
     if (c == ')') {
@@ -49,7 +58,7 @@ char* get_word(FILE *runner, char *word) {
     word[point] = c;
     point++;
     rcount--;
-    c = fgetc(runner);
+    c = cgetc(runner);
   }
   extend = 1;
   return word;
@@ -61,8 +70,8 @@ char* get_sb_word(FILE *runner, char *word) {
   uint64_t point = 0;
   uint64_t rcount = 999;
   char c;
-  c = fgetc(runner);
-  c = fgetc(runner);
+  c = cgetc(runner);
+  c = cgetc(runner);
   while (rcount > 0) {
     if (c == ']') {
       extend = 0;
@@ -71,7 +80,7 @@ char* get_sb_word(FILE *runner, char *word) {
     word[point] = c;
     point++;
     rcount--;
-    c = fgetc(runner);
+    c = cgetc(runner);
   }
   extend = 1;
   return word;
@@ -81,7 +90,7 @@ char* get_sb_word(FILE *runner, char *word) {
 char* get_element(FILE* runner) {
   char* element;
   element=(char *)calloc(999, sizeof(char));
-  char c = fgetc(runner);
+  char c = cgetc(runner);
   ungetc(c, runner);
   if (extend == 0 /*&& c != '['*/) {
     return get_word(runner, element);
@@ -92,12 +101,12 @@ char* get_element(FILE* runner) {
 
 
 void comment(FILE* runner) {
-  char c = fgetc(runner);
+  char c = cgetc(runner);
   if (c == ':') {
     while (true) {
-      c = fgetc(runner);
+      c = cgetc(runner);
       if (c == ':') {
-	c = fgetc(runner);
+	c = cgetc(runner);
 	if (c == ':') {break;}
       }
     }
@@ -109,31 +118,36 @@ extern token get_tok(FILE* input) {
   char chr = ' ';
   token new_tok;
   while (true) {
-    chr = (char)fgetc(input);
+    chr = cgetc(input);
     if (isspace(chr)) {continue;}
     ungetc(chr, input);
     switch (chr) {
       case '(':
         new_tok.TOK = TOK_LPARA;
-	chr = (char)fgetc(input);
+	new_tok.LN  = linenumber;
+	chr = (char)cgetc(input);
         return new_tok;
       case ')':
         new_tok.TOK = TOK_RPARA;
-	chr = (char)fgetc(input);
+	new_tok.LN  = linenumber;
+	chr = (char)cgetc(input);
 	return new_tok;
       case EOF:
         new_tok.TOK = TOK_EOF;
+	new_tok.LN  = linenumber;
         return new_tok;
       case ':':
 	comment(input);
         continue;
       default:
         if (extend == 0){
-          new_tok.TOK = TOK_ELEM;
+          new_tok.TOK     = TOK_ELEM;
+	  new_tok.LN      = linenumber;
           new_tok.ELEMENT = get_element(input);
           return new_tok;
         } else {
-          new_tok.TOK = TOK_EXTD_ELEM;
+          new_tok.TOK     = TOK_EXTD_ELEM;
+	  new_tok.LN      = linenumber;
           new_tok.ELEMENT = get_element(input);
           return new_tok;
         }
