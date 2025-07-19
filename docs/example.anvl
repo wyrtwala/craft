@@ -1,0 +1,44 @@
+[paste] craft toolbox
+
+[heap] singleheapvalue 1
+[heap] heaparray       1000
+[data] iykyk           [hello world]
+
+
+[mark] [sa:my function] begin    :: "sa:" (reminder for arguments 1st: single, 2nd: array) 
+                                    is considered good practice for non builtin function 
+                                    but optional
+                                 ::
+                         
+[stack]  [my var one]  1         :: stack (function) variable      ::
+[stack]  [my var two]  3         :: same stuff                     ::
+[move]   [my var one] $1         :: put rdi into stack variable    ::
+[stack]  counter       1         :: initiate counter varable       ::
+[move]   counter       0      
+[repeat] 3             3         :: repeat next 3 lines 3 times    ::
+[follow] $2            counter   :: find element in array          ::
+[move]   [my var two]  #1        :: #1 is the rax from one line up ::
+[add]    counter       1         :: increment counter              ::
+
+[mark] [sa:my function] end
+
+
+[mark] craft begin               :: program entry point ::
+[stack]  [craft array] 7
+[smelt]  [ascii]       hello,
+[hook]   [craft array] #1
+[extend] [craft array] 8
+[smelt]  [ascii]       [, world!]
+[hook]   [craft array] #1
+[print]  [stdout]      [craft array]
+
+
+[sa:my function]  17 [craft array]
+
+[mark] craft end
+
+
+
+
+
+
