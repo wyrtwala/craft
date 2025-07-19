@@ -7,7 +7,7 @@
 
 [mark] [sa:my function] begin        :: some version of "sa:" (reminder for arguments 1st: single, 2nd: array) ::
                                      :: is considered good practice for non builtin function, but optional     ::                                                                                        
-    [stack]  [my var one]  1         :: stack (function) variable       ::
+    [stack]  [my var one]  1         :: stack (function) variable       :: :: stack variables can only be declared inside functions ::
     [stack]  [my var two]  3         :: same stuff                      ::
     [move]   [my var one]  $1        :: put rdi into stack variable     ::
     [stack]  counter       1         :: initiate counter varable        ::
