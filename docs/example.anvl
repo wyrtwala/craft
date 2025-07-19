@@ -20,7 +20,7 @@
 [mark] [sa:my function] end
 
 
-[craft] elf console                       :: program entry point                      ::
+[craft] [elf64 console] v0.1              :: program entry point                      ::
     [stack]  [craft array] 7              :: stack array variable                     ::
     [smelt]  [ascii]       hello,         :: change string literal to binary values   ::
     [hook]   [craft array] #1             :: like move but for arrays/strings         ::
