@@ -23,7 +23,7 @@
 [mark] [sa:my function] end
 
 
-[mark] craft begin               :: program entry point ::
+[craft] elf console               :: program entry point ::
 [stack]  [craft array] 7
 [smelt]  [ascii]       hello,
 [hook]   [craft array] #1
@@ -35,7 +35,7 @@
 
 [sa:my function]  17 [craft array]
 
-[mark] craft end
+craft end 0
 
 
 
