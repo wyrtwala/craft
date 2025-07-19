@@ -38,7 +38,7 @@ char cgetc(FILE* input) {
 char* get_word(FILE *runner, char *word) {
   uint64_t point = 0;
   uint64_t rcount = 999;
-  char c = cgetc(runner);
+  char c = fgetc(runner);
   uint64_t brak = 0;
   if (c == '[') {
     brak = 1;
@@ -70,7 +70,7 @@ char* get_sb_word(FILE *runner, char *word) {
   uint64_t point = 0;
   uint64_t rcount = 999;
   char c;
-  c = cgetc(runner);
+  c = fgetc(runner);
   c = cgetc(runner);
   while (rcount > 0) {
     if (c == ']') {
@@ -118,7 +118,7 @@ extern token get_tok(FILE* input) {
   char chr = ' ';
   token new_tok;
   while (true) {
-    chr = cgetc(input);
+    chr = fgetc(input);
     if (isspace(chr)) {continue;}
     ungetc(chr, input);
     switch (chr) {
