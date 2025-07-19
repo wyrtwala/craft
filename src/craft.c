@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <inttypes.h>
-#include "error.h"
+#include "lib/lexer.h"
+#include "lib/error.h"
 
 
 
@@ -12,9 +10,11 @@ int main() {
 	required += system("which curl > /dev/null 2>&1");
 	if (required != 0) {
 		log_error("[REQUIRED] curl");
-		timber();
 	}
-
-
+	required += system("which fasm > /dev/null 2>&1");
+	if (required != 0) {
+		log_error("[REQUIRED] fasm");
+		destroy_craft();
+	}
 
 }
