@@ -14,10 +14,14 @@ void initiate_error_log(){
 
 void log_error(char *input) {
   craft_error_log = (char *)realloc(craft_error_log, (strlen(craft_error_log) + strlen(input) + 1) * sizeof(char));
-  sprintf(craft_error_log, "%s>> %s\n", craft_error_log, input);
+  sprintf(craft_error_log, "%s%s\n", craft_error_log, input);
 }
 
-void timber(){
+void print_error_log() {
+  printf(craft_error_log);
+}
+
+void destroy_craft(){
   printf("%s", craft_error_log);
   printf("[END LOG]");
 }
