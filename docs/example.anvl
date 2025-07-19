@@ -5,40 +5,30 @@
 [data] iykyk           [hello world]
 
 
-[mark] [sa:my function] begin    :: "sa:" (reminder for arguments 1st: single, 2nd: array) 
-                                    is considered good practice for non builtin function 
-                                    but optional
-                                 ::
-                         
-[stack]  [my var one]  1         :: stack (function) variable      ::
-[stack]  [my var two]  3         :: same stuff                     ::
-[move]   [my var one] $1         :: put rdi into stack variable    ::
-[stack]  counter       1         :: initiate counter varable       ::
-[move]   counter       0      
-[repeat] 3             3         :: repeat next 3 lines 3 times    ::
-[follow] $2            counter   :: find element in array          ::
-[move]   [my var two]  #1        :: #1 is the rax from one line up ::
-[add]    counter       1         :: increment counter              ::
-
+[mark] [sa:my function] begin        :: some version of "sa:" (reminder for arguments 1st: single, 2nd: array) ::
+                                     :: is considered good practice for non builtin function, but optional     ::                                                                                        
+    [stack]  [my var one]  1         :: stack (function) variable       ::
+    [stack]  [my var two]  3         :: same stuff                      ::
+    [move]   [my var one]  $1        :: put rdi into stack variable     ::
+    [stack]  counter       1         :: initiate counter varable        ::
+    [move]   counter       0      
+    [repeat] 3             3         :: repeat next 3 lines 3 times     ::
+    [follow] $2            counter   :: find element in array           ::
+    [move]   [my var two]  #1        :: #1 is the rax from one line up  ::
+    [add]    counter       1         :: increment counter               ::
+    [move]   return        0         :: every function must have return ::
 [mark] [sa:my function] end
 
 
-[craft] elf console               :: program entry point ::
-[stack]  [craft array] 7
-[smelt]  [ascii]       hello,
-[hook]   [craft array] #1
-[extend] [craft array] 8
-[smelt]  [ascii]       [, world!]
-[hook]   [craft array] #1
-[print]  [stdout]      [craft array]
+[craft] elf console                       :: program entry point                      ::
+    [stack]  [craft array] 7              :: stack array variable                     ::
+    [smelt]  [ascii]       hello,         :: change string literal to binary values   ::
+    [hook]   [craft array] #1             :: like move but for arrays/strings         ::
+    [extend] [craft array] 8              :: allocate more memory to array            ::
+    [smelt]  [ascii]       [, world!]     :: same as above                            ::
+    [hook]   [craft array] #1             :: hook used to concatenate string to array ::
+    [print]  [stdout]      [craft array]  :: print craft array to stdout              ::
 
+    [sa:my function]  17 [craft array]    :: function call ::
 
-[sa:my function]  17 [craft array]
-
-craft end 0
-
-
-
-
-
-
+:: craft ends automatically at the end of the file ::
