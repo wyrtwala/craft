@@ -10,8 +10,8 @@
 #include <stdint.h>
 
 
-#define TOK_LPARA          (0)
-#define TOK_RPARA          (1)
+#define TOK_FVAR           (0)
+#define TOK_RVAR           (1)
 #define TOK_ELEM           (2)
 #define TOK_EXTD_ELEM      (3)
 #define TOK_EOF            (4)
@@ -45,10 +45,6 @@ char* get_word(FILE *runner, char *word) {
     c = cgetc(runner);
   }
   while (rcount > 0) {
-    if (c == ')') {
-      ungetc((char)c, runner);
-      return word;
-    }
     if (c == ']' && brak == 1) {
       return word;
     }
@@ -122,19 +118,19 @@ extern token get_tok(FILE* input) {
     if (isspace(chr)) {continue;}
     ungetc(chr, input);
     switch (chr) {
-      case '(':
-        new_tok.TOK = TOK_LPARA;
-	new_tok.LN  = linenumber;
-	chr = (char)cgetc(input);
+      case '$':
+        new_tok.TOK       = TOK_FVAR;
+	new_tok.LN        = linenumber;
+	new_tok.ELEMENT   = get_element(input);
         return new_tok;
-      case ')':
-        new_tok.TOK = TOK_RPARA;
-	new_tok.LN  = linenumber;
-	chr = (char)cgetc(input);
+      case '#':
+        new_tok.TOK       = TOK_RVAR;
+	new_tok.LN        = linenumber;
+	new_tok.ELEMENT   = get_element(input);
 	return new_tok;
       case EOF:
-        new_tok.TOK = TOK_EOF;
-	new_tok.LN  = linenumber;
+        new_tok.TOK       = TOK_EOF;
+	new_tok.LN        = linenumber;
         return new_tok;
       case ':':
 	comment(input);
