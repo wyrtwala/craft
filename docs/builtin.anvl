@@ -1,11 +1,24 @@
-::comment::
-(one entity)
-[pointer]
-
-
-> craft   binary-type     console/gui
+> ::comment::
+> (one entity)
+> [dereference pointer]
+>
+>
+> craft pe/elf console/gui
 > include craft/local/web filename
-> replace original        substitute
+> replace original substitute  ::only runs up till "craft start line"
+>
+>
+> macro name (comma seperated variables for macro)
+>      ::macro body::
+> end    macro name
+>
+>
+> data name data
+> pointer name heap/variable-name
+> set pointer newsize
+> craft heap check ::list of allocated memeory id's and pointer names::
+> kill pointer name
+> kill allocated-memory memory-id
 >
 >
 > mark location name
@@ -22,20 +35,35 @@
 > end  function name
 >
 > repeat #of-lines-to-repeat #of-times-to-repeat ::if 0: repeat indefinitely::
+>                                                ::automatic variable "counter" starts at one and increments up every revolution::
 >
 >   ::arithmetic::
-> add     into from
-> sub     from amount
-> mult    into from
-> div     from amount
-> mod     into fromi
+> add  into from
+> sub  from amount
+> mult into from
+> div  from amount
+> mod  into fromi
 >
 >
 >   ::operators::
+> and one two
+> eor one two
+> xor one two
 > 
 >
+> write filedescriptor (dec/hex/ascii/utf8, variable)
+> read  filedescriptor (dec/hex/ascii/utf8, variable)
 >
 >
+> system-call syscall (comma seperated list of variables)
+>
+>
+>
+> craft start 0
+>
+>
+>
+
 
 
 
