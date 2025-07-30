@@ -1,3 +1,42 @@
->craft 
+::comment::
+(one entity)
+[pointer]
 
-[include]
+
+> craft   binary-type     console/gui
+> include craft/local/web filename
+> replace original        substitute
+>
+>
+> mark location name
+> goto location name 
+>
+>
+> goif   (condition) location-name
+> callif (condition) function-name
+> doif   (condition) #number of lines to execute
+>
+>   ::function declaration::
+> mark function name                               
+>      ::funcion body::
+> end  function name
+>
+> repeat #of-lines-to-repeat #of-times-to-repeat ::if 0: repeat indefinitely::
+>
+>   ::arithmetic::
+> add     into from
+> sub     from amount
+> mult    into from
+> div     from amount
+> mod     into fromi
+>
+>
+>   ::operators::
+> 
+>
+>
+>
+
+
+
+
