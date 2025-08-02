@@ -8,8 +8,8 @@ import (
 )
 
 //file buffers
-var craft_file          string
-var library_file        string
+var craft_buffer        string
+var library_buffer      string
 //asm buffers
 var preamble            string
 var text_asm            string
@@ -47,26 +47,46 @@ func main() {
 //#####  #   #    #    #   #  #####     #     #####  #   #  #    #  #####
 
 
-func include_file(token_number: uint64) {
-  
-	resp, err := http.Get("https://example.com")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer resp.Body.Close() 
-	bodyBytes, err := io.ReadAll(resp.Body)
-	if err != nil {
-		log.Fatal(err)
-	}
-	bodyString := string(bodyBytes)
-	fmt.Println(bodyString) 
-}
+
 
 //####   #####  #   #  #####
 //#   #  #   #  ##  #  #
 //#   #  #   #  # # #  ###
 //#   #  #   #  #  ##  #
 //####   #####  #   #  #####
+func include_file(token_number: uint64) {
+  	if token_list[token_number+1].content == "web" {
+		request := fmt.Sprintf("https://%s", token_string[token_number+2].content)
+		resp, err := http.Get(request)
+		if err != nil {
+			ferror := fmt.Sprintf("could not retrieve %s", request)
+			log.Fatal(ferror)
+		}
+		defer resp.Body.Close() 
+		response, err := io.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+		library_buffer += string(response) 
+	} else if token_list[token_number+1].content == "craft" {
+		request := fmt.Sprintf("https://josephfruin.com/craft/%s", token_string[token_number+2].content)
+		resp, err := http.Get(request)
+		if err != nil {
+			ferror := fmt.Sprintf("could not retrieve %s", request)
+			log.Fatal(ferror)
+		}
+		defer resp.Body.Close() 
+		response, err := io.ReadAll(resp.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+		library_buffer += string(response) 
+	} else if token_list[token_number+1].content == "local" {
+		library_buffer += os.Readfile(token_list[token_number+2].content)
+	} else {
+		log.Fatal("included library must be of types: craft, local or web") 
+	}
+}
 
 func parse_flags() {
   var flag_source := flag.String("source" , "NULL", "source file")
