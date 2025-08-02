@@ -54,7 +54,7 @@ func main() {
 //#   #  #   #  # # #  ###
 //#   #  #   #  #  ##  #
 //####   #####  #   #  #####
-func include_file(token_number: uint64) {
+func include_file(token_number uint64) {
   	if token_list[token_number+1].content == "web" {
 		request := fmt.Sprintf("https://%s", token_string[token_number+2].content)
 		resp, err := http.Get(request)
