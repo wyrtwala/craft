@@ -33,6 +33,7 @@ type Token struct {
 }
 
 var token_string []Token
+var lib_token_string []Token
 var cur_tok_num uint64 = 0
 var cur_line uint64 = 0
 
@@ -55,13 +56,14 @@ var flag_output *string
 //#   #   #  #       #  #####  #    #
 
 func main() {
+	token_string = make([]Token, 0)
 	parse_flags()
 	parse_token_string(craft_buffer, 0)
-	parse_token_string(library_buffer, 1)
+	//parse_token_string(library_buffer, 1)
 	fmt.Println(log_file)
 	fmt.Println(craft_buffer)
-	//print_token_string()
-	token_to_asm()
+	print_token_string(token_string)
+	//token_to_asm()
 	join_asm()
 	//compile()
 }
@@ -71,68 +73,6 @@ func main() {
 //  #    # # #    #    #####  ###    #  #  #  #   #  ####   ###     #####
 //  #    #  ##    #    #   #  #        # #    #   #  #  #   #   #       #
 //#####  #   #    #    #   #  #####     #     #####  #   #  #    #  #####
-
-func parse_token_string(input string, buffer_type uint64) {
-	inputlength := uint64(len(input))
-	var cur_pos uint64 = 0
-	strinput := []rune(input)
-	for cur_pos < uint64(inputlength) {
-		var buffer = ""
-		var cur_tok Token
-		var c = strinput[cur_pos]
-		if c == '\n' {
-			cur_line += 1
-		}
-		if unicode.IsSpace(c) {
-			continue
-		}
-		switch c {
-		case '(':
-			cur_tok.tokentype = "parentheses"
-			cur_tok.linenumber = cur_line
-			{
-				for i := cur_pos + 1; i < inputlength-1; i++ {
-					if strinput[i] != ')' {
-						buffer += string(strinput[i])
-					} else {
-						cur_tok.content = buffer
-					}
-					cur_pos += 1
-				}
-			}
-		case '[':
-			cur_tok.tokentype = "pointer"
-			cur_tok.linenumber = cur_line
-			{
-				for i := cur_pos + 1; i < inputlength-1; i++ {
-					if strinput[i] != ']' {
-						buffer += string(strinput[i])
-					} else {
-						cur_tok.content = buffer
-					}
-					cur_pos += 1
-				}
-			}
-		default:
-			cur_tok.tokentype = "word"
-			cur_tok.linenumber = cur_line
-			{
-				for i := cur_pos + 1; i < inputlength-1; i++ {
-					if !unicode.IsSpace(strinput[i]) {
-						buffer += string(strinput[i])
-					} else {
-						cur_tok.content = buffer
-					}
-					cur_pos += 1
-				}
-			}
-		}
-		token_string = append(token_string, cur_tok)
-		fmt.Println("[token] type: %15S, content: %35S", cur_tok.tokentype, cur_tok.content)
-	}
-	end_tok := Token{content: "", tokentype: "EOF"}
-	token_string[inputlength-1] = end_tok
-}
 
 func token_to_asm() {
 	if token_string[cur_tok_num].tokentype == "include" {
@@ -145,6 +85,131 @@ func token_to_asm() {
 // #   #  #   #  # # #  ###
 // #   #  #   #  #  ##  #
 // ####   #####  #   #  #####
+func parse_token_string(input string, buffer_type uint64) {
+	inputlength := uint64(len(input))
+	var cur_pos uint64 = 0
+	strinput := []rune(input)
+	var cur_tok Token
+	for cur_pos < uint64(inputlength) {
+		var buffer = ""
+		var c = strinput[cur_pos]
+		for unicode.IsSpace(c) && cur_pos < inputlength {
+			if c == '\n' {
+				cur_line += 1
+			}
+			cur_pos += 1
+			if cur_pos >= inputlength {
+				break
+			}
+			c = strinput[cur_pos]
+		}
+		switch c {
+		case ':':
+			{
+				if strinput[cur_pos+1] == ':' {
+					cur_pos += 2
+					for i := cur_pos; i < inputlength; i += 1 {
+						if strinput[cur_pos] == ':' && strinput[cur_pos+1] == ':' {
+							cur_pos += 2
+							break
+						} else {
+							if cur_pos == inputlength-1 {
+								break
+							}
+							cur_pos += 1
+							continue
+						}
+					}
+				} else {
+					cur_tok.tokentype = "word"
+					cur_tok.linenumber = cur_line
+					{
+						for i := cur_pos; i < inputlength; i += 1 {
+							if !unicode.IsSpace(strinput[i]) {
+								buffer += string(strinput[i])
+								cur_pos += 1
+								if strinput[cur_pos] == '\n' {
+									cur_line += 1
+								}
+							} else {
+								cur_tok.content = buffer
+								cur_pos += 1
+								break
+							}
+						}
+					}
+				}
+			}
+		case '(':
+			cur_tok.tokentype = "parentheses"
+			cur_tok.linenumber = cur_line
+			{
+				cur_pos += 1
+				for i := cur_pos; i < inputlength-1; i += 1 {
+					if strinput[i] != ')' {
+						buffer += string(strinput[i])
+						cur_pos += 1
+						if strinput[cur_pos] == '\n' {
+							cur_line += 1
+						}
+					} else {
+						cur_tok.content = buffer
+						cur_pos += 1
+						break
+					}
+				}
+			}
+		case '[':
+			cur_tok.tokentype = "pointer"
+			cur_tok.linenumber = cur_line
+			{
+				cur_pos += 1
+				for i := cur_pos; i < inputlength-1; i += 1 {
+					if strinput[i] != ']' {
+						buffer += string(strinput[i])
+						cur_pos += 1
+						if strinput[cur_pos] == '\n' {
+							cur_line += 1
+						}
+					} else {
+						cur_tok.content = buffer
+						cur_pos += 1
+						break
+					}
+				}
+			}
+		default:
+			cur_tok.tokentype = "word"
+			cur_tok.linenumber = cur_line
+			{
+				for i := cur_pos; i < inputlength-1; i++ {
+					if !unicode.IsSpace(strinput[i]) {
+						buffer += string(strinput[i])
+						cur_pos += 1
+						if strinput[cur_pos] == '\n' {
+							cur_line += 1
+						}
+					} else {
+						cur_tok.content = buffer
+						cur_pos += 1
+						break
+					}
+				}
+			}
+		}
+		if buffer_type == 0 {
+			token_string = append(token_string, cur_tok)
+		} else {
+			lib_token_string = append(lib_token_string, cur_tok)
+		}
+	}
+	end_tok := Token{content: "", tokentype: "EOF", linenumber: 0}
+	if buffer_type == 0 {
+		token_string = append(token_string, end_tok)
+	} else {
+		lib_token_string = append(lib_token_string, end_tok)
+	}
+}
 
 func join_asm() {
 	full_asm += preamble
@@ -162,13 +227,15 @@ func join_asm() {
 	}
 }
 
-func print_token_string() {
+func print_token_string(read_token_string []Token) {
 	var test_runner uint64 = 0
 	for true {
-		if token_string[test_runner].tokentype != "EOF" {
-			fmt.Println("num: %5d, tokentype: %15S, content: %35S", test_runner, token_string[test_runner].tokentype, token_string[test_runner].content)
+		if read_token_string[test_runner].tokentype != "EOF" {
+			fmt.Printf("num: %5d, tokentype: %9s, content: %15s\n", test_runner, read_token_string[test_runner].tokentype, read_token_string[test_runner].content)
+			test_runner += 1
 		} else {
-			log.Fatal("EOF ok")
+			fmt.Printf("EOF\n")
+			break
 		}
 	}
 }
