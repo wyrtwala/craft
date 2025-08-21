@@ -1,2 +1,2 @@
-# craft
+# CRAFT
 Computer Oriented Programming Language
