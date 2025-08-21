@@ -25,7 +25,7 @@ A computer transforms data with only one unit:         CPU.
 
 -------------------------------------------------------------------------------------------------------------------------------
   
-```
+
   
 ### Data
 
@@ -57,16 +57,20 @@ Runtime data is stored in two ways:
 (pointers must point to some place in memory
 
 Memory may be obtained (and removed) for a pointer with:
->> map:open       pointer size
->> map:close      pointer size
->> map:resize     pointer size
+>> map:open        pointer size
+>> map:close       pointer size
+>> map:resize      pointer size
 You also have the option of:
->> map:page:new   pointer count
->> map:page:close pointer count
+>> map:page:new    pointer count
+>> map:page:close  pointer count
+>> map:page:resize pointer count
 
 Data may also be held in cpu registers:
 >> reg:a
 >> reg:b
+>> reg:x
+>> reg:y
+>> reg:z
 >> reg:1
 >> reg:2
 >> reg:3
@@ -78,7 +82,7 @@ Data may also be held in cpu registers:
 
 ### Transformations
 
-```
+
 
 
 
