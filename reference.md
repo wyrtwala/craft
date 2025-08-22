@@ -1,13 +1,13 @@
 -------------------------------------------------------------------------------------------------------------------------------
 
-# Premise
+# I. Premise
 
 -------------------------------------------------------------------------------------------------------------------------------
 
 ```
-A computer can do only four things:                               Recieve Data; Store Data; Transform Data; Send Data.  
-A kernel side program can do only four things:                    Recieve Data; Store Data; Transform Data; Send Data.  
-A user side program can do only four things:                      Recieve Data; Store Data; Transform Data; Send Data.  
+A computer can do only five things:                 Recieve Data; Store Data; Compare Data; Transform Data; Send Data.  
+A kernel side program can do only five things:      Recieve Data; Store Data; Compare Data; Transform Data; Send Data.  
+A user side program can do only five things:        Recieve Data; Store Data; Compare Data; Transform Data; Send Data.  
   
   
 A computer can recieve data in only one way:                      Ports.  
@@ -21,14 +21,14 @@ A computer transforms data with only one unit:                    CPU.
   
 -------------------------------------------------------------------------------------------------------------------------------
 
-# Argument  
+# II. Argument  
 
 -------------------------------------------------------------------------------------------------------------------------------
   
  
-## Data  
+## A. Data  
 
-#### Send and Recieve Data
+#### 1. Send and Recieve Data
 
 -------------------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ Examples:
 >> data:recieve 0 64 reg:1
 ```
 
-#### Store Data
+#### 2. Store Data
 -------------------------------------------------------------------------------------------------------------------------------
 
 ```
@@ -93,10 +93,85 @@ There are also special registers:
 (Note: registers must be set. We will see how to do that later)
 ```
 
-#### Transform Data
+#### 4. Compare Data
 
 -------------------------------------------------------------------------------------------------------------------------------
 
+```
+### TODO
+xor
+or
+and
+not
+cmp
+test
+bound
+
+```
+
+#### 4. Transform Data
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+```
+Data can be changed in two ways:
+  From 1 to 0.
+  From 0 to 1.
+We though, will use several abstractions to make it so that making millions of those changes doesn't take 17,000.000,000 lines of code to write.
+
+
+A data storage may be set to a specific value with:
+>> set address size value
+(Note: an address may be a memory addess, a symbol name or a register)
+(Note: a value may be a specific value, a memory address, a symbol or a register) 
+
+A D.S. may be changed in place with arithmetic commands:
+>> add address:size value:size
+>> sub address:size value:size
+>> mul address:size value:size
+>> div address:size value:size
+>> mod address:size value:size
+And with:
+>> add:into addres:size value:size value:size
+>> sub:into addres:size value:size value:size
+>> mul:into addres:size value:size value:size
+>> div:into addres:size value:size value:size
+>> mod:into addres:size value:size value:size
+(Note: these act on two values and put the result into adress)
+(Note: size may be omitted when 8)
+
+There are also the commands:
+>> inc address/value:size
+>> dec address/value:size
+>> neg address/value:size
+>> xoraddress/value:size address/value:size
+>> eoraddress/value:size address/value:size
+>> andaddress/value:size address/value:size
+>> not address/value:size
+>> shr address/value:size address/value:size
+>> shl address/value:size address/value:size
+And:
+>> inc:into addres:size address/value:size
+>> dec:into addres:size address/value:size
+>> neg:into addres:size address/value:size
+>> xor:into addres:size address/value:size address/value:size
+>> eor:into addres:size address/value:size address/value:size
+>> and:into addres:size address/value:size address/value:size
+>> not:into addres:size address/value:size
+>> shr:into addres:size address/value:size address/value:size
+>> shl:into addres:size address/value:size address/value:size
+```
+
+
+#### 5. Execute Data
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+subroutines
+execute memory
+exec 
+system
+system call
 
 
 
