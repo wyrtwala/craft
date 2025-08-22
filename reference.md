@@ -3,20 +3,20 @@
 # Premise
 
 -------------------------------------------------------------------------------------------------------------------------------
+
 ```
-A computer can do only three things:                   Recieve Data; Transform Data; Send Data.  
-A kernel side program can do only three things:        Recieve Data; Transform Data; Send Data.  
-A user side program can do only three thing:           Recieve Data; Transform Data; Send Data.  
+A computer can do only four things:                               Recieve Data; Store Data; Transform Data; Send Data.  
+A kernel side program can do only four things:                    Recieve Data; Store Data; Transform Data; Send Data.  
+A user side program can do only four things:                      Recieve Data; Store Data; Transform Data; Send Data.  
   
   
-A computer can recieve data in only one way:           Ports.  
-A computer can send data in only one way:              Ports.  
-A computer can only transform Data in two places:      Memory; Registers.  
+A computer can recieve data in only one way:                      Ports.  
+A computer can send data in only one way:                         Ports.  
+A computer can only Store Data internally in three places:        Storage Devices; Memory Devices; CPU Registers.  
 
   
-A program has only two sets of Data:                   Hardcoded Data; Runtime Data.  
-A program stores data in only two places:              Stack Data; Heap Data.  
-A computer transforms data with only one unit:         CPU.
+A program has only two sets of Data:                              Compiled Data; Runtime Data.   
+A computer transforms data with only one unit:                    CPU.
 ```
   
 -------------------------------------------------------------------------------------------------------------------------------
@@ -25,63 +25,77 @@ A computer transforms data with only one unit:         CPU.
 
 -------------------------------------------------------------------------------------------------------------------------------
   
+ 
+## Data  
+
+#### Send and Recieve Data
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+```
+Data may be recieved with the command:  
+>> port:recieve port count buffer  
+And sent with:
+>> port:send    buffer count port  
+(Note: ">>" only signals that the line is code and does not form part of the code itself.)  
 
   
-### Data
+A Port may be obtained with:  
+>> port:open:file          filepath  
+>> port:open:socket:server protocol address port  
+>> port:open:socket:client protocol address port  
+>> port:open:device        device  
+Any port may be closed with:  
+>> port:close              port  
 
-Data may be recieved with the command:  
->> port:recieve port count buffer
-To send data use:
->> port:send buffer count port
-(Note: port may be for file/network/device and is described in more detail below)
-(Note: ">>" only signals that the line is code and does not form part of the code itself.)
 
-Port may be obtained with:
->> port:open:file          file
->> port:open:socket:server protocol address port
->> port:open:socket:client protocol address port
->> port:open:device        device 
-(Note: any of the above commands may be used with :close: instead of open.)
+Examples:
+>> data:recieve 0 64 reg:1
+```
 
-example for stdin
->> data:recieve 0 64
+#### Store Data
+-------------------------------------------------------------------------------------------------------------------------------
 
-Only hardcoded data may be stored on database with:
->> data:unit name signed_integer
->> data:string name string of integers
+```
+Pre compile data may be stored as:
+>> data:unit name unit_size signed_integer  
+>> data:string name unit_size string_of_integers
+(Note: unit sizes are taken in bytes and can be set to 1/2/4/8)  
 
-Runtime data is stored in two ways:
->> symbol:unit name size singed_integer
-(symbols are programmer made names for numbers)
->> symbol:pointer name
-(pointers must point to some place in memory
-
+Runtime data is stored in three ways:
+    Units:
+>> symbol:global:unit name size signed_integer
+>> symbol:local:unit  name size signed_integer
+(Note: any size 8 unit may be used as a pointer)
+    Mapped Memory:
 Memory may be obtained (and removed) for a pointer with:
->> map:open        pointer size
->> map:close       pointer size
->> map:resize      pointer size
+>> map:open        pionter size  
+>> map:close       address size  
+>> map:resize      address size  
 You also have the option of:
->> map:page:new    pointer count
->> map:page:close  pointer count
->> map:page:resize pointer count
-
-Data may also be held in cpu registers:
->> reg:a
+>> map:page:new    pointer count  
+>> map:page:close  address count  
+>> map:page:resize address count  
+    And CPU Registers:  
+>> reg:1  
+>> reg:2  
+>> reg:3  
+>> reg:4  
+>> reg:5  
+>> reg:6  
+There are also special registers:
+>> reg:a  
 >> reg:b
->> reg:x
->> reg:y
+>> reg:c
+>> reg:x  
+>> reg:y  
 >> reg:z
->> reg:1
->> reg:2
->> reg:3
->> reg:4
->> reg:5
->> reg:6
->> reg:7
->> reg:8
+(Note: registers must be set. We will see how to do that later)
+```
 
-### Transformations
+#### Transform Data
 
+-------------------------------------------------------------------------------------------------------------------------------
 
 
 
