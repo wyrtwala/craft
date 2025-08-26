@@ -28,7 +28,7 @@ A program sorts data into two types:                              Stack; Heap.
    
 ## I. Recieve Data:    
   
-### A. Recieve Data:  
+### A. Send & Recieve Data:  
 ```
 port:recieve port count buffer
 ```
