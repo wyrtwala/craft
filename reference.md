@@ -51,7 +51,7 @@ port:close              port
   
 ### A. Hardcoded program data:  
 ```
-data:unit name unit_size signed_integer  
+data:unit   name unit_size signed_integer  
 data:string name unit_size string_of_integers
 ```
 (Note: unit sizes are taken in bytes and can be set to 1/2/4/8)  
