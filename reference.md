@@ -26,26 +26,26 @@ A program sorts data into two types:                              Stack; Heap.
 -------------------------------------------------------------------------------------------------------------------------------  
     
    
-## I. Recieve Data:    
+## I. Send & Recieve Data:    
   
 ### A. Send & Recieve Data:  
 ```
 port:recieve port count buffer
-port:send    buffer count port  
+port:send    buffer count port
 ```
 ### C. Open & Close Ports:  
 ```
-port:open:file          filepath  
-port:open:socket:server protocol address port  
-port:open:socket:client protocol address port  
+port:open:file          filepath
+port:open:socket:server protocol address port
+port:open:socket:client protocol address port
 port:open:device        device
-port:close              port  
+port:close              port
 ```
 ## II. Store Data:    
   
 ### A. Hardcoded program data:  
 ```
-data:unit   name unit_size signed_integer  
+data:unit   name unit_size signed_integer
 data:string name unit_size string_of_integers
 ```
 (Note: unit sizes are taken in bytes and can be set to 1/2/4/8)  
@@ -63,34 +63,34 @@ symbol:local:unit  name size signed_integer
   
 ##### a. Small Maps:  
 ```
-map:open        pionter size    
-map:close       address size  
-map:resize      address size  
+map:open        pionter size
+map:close       address size
+map:resize      address size
 ```
 ##### b. Page Aligned Maps:  
 ```
-map:page:new    pointer count  
-map:page:close  address count  
-map:page:resize address count  
+map:page:new    pointer count
+map:page:close  address count
+map:page:resize address count
 ``` 
 #### 3. CPU Registers:  
   
 ##### a. Flexible Registers:  
 ```
-$1  
-$2  
-$3  
-$4  
-$5  
-$6  
+$1
+$2
+$3
+$4
+$5
+$6
 ```
 ##### b. Rigid Registers:  
 ```
-#1  
-#2  
-#3  
-#4  
-#5  
+#1
+#2
+#3
+#4
+#5
 #6
 ```
 ## III. Compare Data:  
