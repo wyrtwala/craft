@@ -137,7 +137,7 @@ shr section section/value
 shl section section/value
 ```
   
-## 5. Execute Data:  
+## V. Execute Data:  
   
 subroutines  
 execute memory   
