@@ -31,20 +31,14 @@ A program sorts data into two types:                              Stack; Heap.
 ### A. Send & Recieve Data:  
 ```
 port:recieve port count buffer
-```
-### B. Send Data:  
-```
 port:send    buffer count port  
 ```
-### C. Open Port:  
+### C. Open & Close Ports:  
 ```
 port:open:file          filepath  
 port:open:socket:server protocol address port  
 port:open:socket:client protocol address port  
 port:open:device        device
-```
-### D. Close Port:  
-```
 port:close              port  
 ```
 ## II. Store Data:    
