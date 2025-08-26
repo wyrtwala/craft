@@ -1,9 +1,9 @@
--------------------------------------------------------------------------------------------------------------------------------
-
-# I. Premise
-
--------------------------------------------------------------------------------------------------------------------------------
-
+-------------------------------------------------------------------------------------------------------------------------------  
+  
+# Premise  
+  
+-------------------------------------------------------------------------------------------------------------------------------  
+  
 ```
 A computer can do only five things:                 Recieve Data; Store Data; Compare Data; Transform Data; Send Data.  
 A kernel side program can do only five things:      Recieve Data; Store Data; Compare Data; Transform Data; Send Data.  
@@ -12,166 +12,137 @@ A user side program can do only five things:        Recieve Data; Store Data; Co
   
 A computer can recieve data in only one way:                      Ports.  
 A computer can send data in only one way:                         Ports.  
-A computer can only Store Data internally in three places:        Storage Devices; Memory Devices; CPU Registers.  
+A computer can only Store Data internally in three places:        Storage Devices; Memory Devices; CPU.  
 
   
-A program has only two sets of Data:                              Compiled Data; Runtime Data.   
-A computer transforms data with only one unit:                    CPU.
+A program has only two sets of Data:                              Compiled Data; Runtime Data.
+A program sorts data into two types:                              Stack; Heap.
 ```
+   
+-------------------------------------------------------------------------------------------------------------------------------  
   
--------------------------------------------------------------------------------------------------------------------------------
-
-# II. Argument  
-
--------------------------------------------------------------------------------------------------------------------------------
+# Argument   
   
- 
-## A. Data  
-
-#### 1. Send and Recieve Data
-
--------------------------------------------------------------------------------------------------------------------------------
-
-```
-Data may be recieved with the command:  
->> port:recieve port count buffer  
-And sent with:
->> port:send    buffer count port  
-(Note: ">>" only signals that the line is code and does not form part of the code itself.)  
-
+-------------------------------------------------------------------------------------------------------------------------------  
+    
+   
+## I. Recieve Data:    
   
-A Port may be obtained with:  
->> port:open:file          filepath  
->> port:open:socket:server protocol address port  
->> port:open:socket:client protocol address port  
->> port:open:device        device  
-Any port may be closed with:  
->> port:close              port  
-
-
-Examples:
->> data:recieve 0 64 reg:1
+### A. Recieve Data:  
 ```
-
-#### 2. Store Data
--------------------------------------------------------------------------------------------------------------------------------
-
+port:recieve port count buffer
 ```
-Pre compile data may be stored as:
->> data:unit name unit_size signed_integer  
->> data:string name unit_size string_of_integers
+### B. Send Data:  
+```
+port:send    buffer count port  
+```
+### C. Open Port:  
+```
+port:open:file          filepath  
+port:open:socket:server protocol address port  
+port:open:socket:client protocol address port  
+port:open:device        device
+```
+### D. Close Port:  
+```
+port:close              port  
+```
+## II. Store Data:    
+  
+### A. Hardcoded program data:  
+```
+data:unit name unit_size signed_integer  
+data:string name unit_size string_of_integers
+```
 (Note: unit sizes are taken in bytes and can be set to 1/2/4/8)  
-
-Runtime data is stored in three ways:
-    Units:
->> symbol:global:unit name size signed_integer
->> symbol:local:unit  name size signed_integer
-(Note: any size 8 unit may be used as a pointer)
-    Mapped Memory:
-Memory may be obtained (and removed) for a pointer with:
->> map:open        pionter size  
->> map:close       address size  
->> map:resize      address size  
-You also have the option of:
->> map:page:new    pointer count  
->> map:page:close  address count  
->> map:page:resize address count  
-    And CPU Registers:  
->> reg:1  
->> reg:2  
->> reg:3  
->> reg:4  
->> reg:5  
->> reg:6  
-There are also special registers:
->> reg:a  
->> reg:b
->> reg:c
->> reg:x  
->> reg:y  
->> reg:z
-(Note: registers must be set. We will see how to do that later)
+  
+### B. Runtime Data:  
+  
+#### 1. Units:  
 ```
-
-#### 4. Compare Data
-
--------------------------------------------------------------------------------------------------------------------------------
-
+symbol:global:unit name size signed_integer
+symbol:local:unit  name size signed_integer
 ```
-### TODO
-xor
-or
-and
-not
-cmp
-test
-bound
-
+(Note: any size 8 unit may be used as a pointer)  
+  
+#### 2. Mapped Memory:  
+  
+##### a. Small Maps:  
 ```
-
-#### 4. Transform Data
-
--------------------------------------------------------------------------------------------------------------------------------
-
+map:open        pionter size    
+map:close       address size  
+map:resize      address size  
 ```
-Data can be changed in two ways:
-  From 1 to 0.
-  From 0 to 1.
-We though, will use several abstractions to make it so that making millions of those changes doesn't take 17,000.000,000 lines of code to write.
-
-
-A data storage may be set to a specific value with:
->> set address size value
-(Note: an address may be a memory addess, a symbol name or a register)
-(Note: a value may be a specific value, a memory address, a symbol or a register) 
-
-A D.S. may be changed in place with arithmetic commands:
->> add address:size value:size
->> sub address:size value:size
->> mul address:size value:size
->> div address:size value:size
->> mod address:size value:size
-And with:
->> add:into addres:size value:size value:size
->> sub:into addres:size value:size value:size
->> mul:into addres:size value:size value:size
->> div:into addres:size value:size value:size
->> mod:into addres:size value:size value:size
-(Note: these act on two values and put the result into adress)
-(Note: size may be omitted when 8)
-
-There are also the commands:
->> inc address/value:size
->> dec address/value:size
->> neg address/value:size
->> xoraddress/value:size address/value:size
->> eoraddress/value:size address/value:size
->> andaddress/value:size address/value:size
->> not address/value:size
->> shr address/value:size address/value:size
->> shl address/value:size address/value:size
-And:
->> inc:into addres:size address/value:size
->> dec:into addres:size address/value:size
->> neg:into addres:size address/value:size
->> xor:into addres:size address/value:size address/value:size
->> eor:into addres:size address/value:size address/value:size
->> and:into addres:size address/value:size address/value:size
->> not:into addres:size address/value:size
->> shr:into addres:size address/value:size address/value:size
->> shl:into addres:size address/value:size address/value:size
+##### b. Page Aligned Maps:  
 ```
-
-
-#### 5. Execute Data
-
--------------------------------------------------------------------------------------------------------------------------------
-
-subroutines
-execute memory
-exec 
-system
-system call
+map:page:new    pointer count  
+map:page:close  address count  
+map:page:resize address count  
+``` 
+#### 3. CPU Registers:  
+  
+##### a. Flexible Registers:  
+```
+$1  
+$2  
+$3  
+$4  
+$5  
+$6  
+```
+##### b. Rigid Registers:  
+```
+#1  
+#2  
+#3  
+#4  
+#5  
+#6
+```
+## III. Compare Data:  
+```  
+cmp    section section
+bound  section section
+ ``` 
+## IV. Transform Data:  
+  
+Data can be changed in two ways:  
+  1. From 1 to 0.  
+  2. From 0 to 1.  
+We though, will use several abstractions to make it so that making millions of those changes doesn't take 17,000.000,000 lines of code to write.  
+  
+A data storage may be set to a specific value with:  
+```
+set section size value
+```
+(Note: a section may be a memory addess, a symbol name or a register)  
+(Note: each section, other than registers, may take a size other than 8 bytes, and is formatted as address:size)  
+(Note: a value may be a specific value, a memory address, a symbol or a register)  
+  
+Data be changed in place with arithmetic commands:    
+```
+add section section
+sub section section
+mul section section
+div section section
+mod section section
+inc section
+dec section
+neg section
+xor section section/value
+eor section section/value
+and section section/value
+not section
+shr section section/value
+shl section section/value
+```
+  
+## 5. Execute Data:  
+  
+subroutines  
+execute memory   
+system  
+system call  
 
 
 
