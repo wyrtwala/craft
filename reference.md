@@ -94,10 +94,12 @@ $6
 #6
 ```
 ## III. Compare Data:  
+
 ```  
 cmp    section section
 bound  section section
- ``` 
+ ```
+
 ## IV. Transform Data:  
   
 Data can be changed in two ways:  
@@ -132,11 +134,62 @@ shl section section/value
 ```
   
 ## V. Execute Data:  
+
+Computers execute instructions linearly: one after another in sequence.   
+So in order to have flexibility in the way our code runs we add in what   
+is commonly called "control-flow", which has several flavors.  
   
-subroutines  
-execute memory   
-system  
-system call  
+### A. Marks
+  
+Special units can be created that, instead of a human set value, contain their own memory address:
+```
+symbol:global:mark name passed_values...
+symbol:local:mark  name passed_values...
+```
+First six passed values are passed in registers; anything after that is passed as a size 8 stack value.  
+  
+### B. Jumps & Detours
 
+From anywhere you can move to somewhere else in the code by jumping to a mark:
+```
+jump address
+```
+Or detour with:  
+```
+execute name 
+```
+Every detour must have the return command to come back to the original route:  
+```
+return:with value
+```
+After a detour a section may be set to the returned value with:  
+```
+return:into section
+```
+Jumps may not use passed values and do not return.  
+  
+### C. Conditional Jumps & Detours  
+  
+You may at some point want to change the course of your code depending information  
+you don't have before runtime; in that case you may use conditional jumps and detours.  
 
-
+```
+cmp section section
+jump:smaller     address
+jump:greater     address
+jump:equal       address
+jump:not:smaller address
+jump:not:greater address
+jump:not:equal   address
+cmp section section
+execute:smaller     address passed_values...
+execute:greater     address passed_values...
+execute:equal       address passed_values...
+execute:not:smaller address passed_values...
+execute:not:greater address passed_values...
+execute:not:equal   address passed_values...
+```
+  
+Basics done, if you're still interested go to [The Craft Dictionary](https://github.com/wyrtwala/craft/blob/main/src/dictionary.txt)  
+  
+  
