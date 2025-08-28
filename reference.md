@@ -295,7 +295,7 @@ anon:last
 sys:call  syscall_number args... //in order of course
 ```
 
-###. Execute Foreign Code:
+### B. Execute Foreign Code:
 ```
 external:execute filepath
 ```
