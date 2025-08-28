@@ -76,8 +76,8 @@ hc:string name list_of_signed_integers
     subroutine (we will talk about these later) where they are placed.
   - Note: hc:unit and hc:string are both global.
 ```
-rtu:global name signed_integer
-rtu:local  name signed_integer
+rts:global name signed_integer
+rts:local  name signed_integer
 ```
   - There is a special type of unit called a mark. A mark contains it's own
     address instead of some other value. They are used to navigate the code
@@ -110,9 +110,9 @@ map:resize      address size
   - Or you can open memory along page lines (if your interested this is actually
     a very interesting thing to look further into) you can use:
 ```
-map:page:new    unit count
-map:page:close  address count
-map:page:resize address count
+page:new    unit count
+page:close  address count
+page:resize address count
 ```
   - Note: When you ask for a new map you must give a unit name because unit's
     value will be set to the address for the mapped memory.
@@ -164,15 +164,15 @@ $6
 ```
 stack:place   value
 stack:remove  value
-stack:access  count
+stack:copy   count
 ```
-  - Note: count referse to how far down the stack the value you want was set.
+  - Note: count referse to how far down the stack the value you want is.
 
 ## III. Compare Data:  
   - Often in order to make decisions about what route to take through your code
     you need to compare data. This can be done in two ways.
   - cmp compares two values and bound will check a value with two other values to
-    see if it is in between them.
+    see if it is between them.
 ```  
 cmp    value value
 bound  value value:value
@@ -191,15 +191,15 @@ bound  value value:value
 ```
 set address/register value
 ```  
-  - Note: from here on out we will call the combination Heap/Register: sections
+  - Note: from here on out we will call the combination Heap/Register: a section
   
   - Sections may be transformed in place: 
 ```
 add sections
-sub section section
-mul section section
-div section section
-mod section section
+sub section section/value
+mul section section/value
+div section section/value
+mod section section/value
 inc section
 dec section
 neg section
@@ -227,12 +227,12 @@ jump address
   - You can also jump based on a cmp:
 ```
 cmp section section
-jump:smaller     address
-jump:greater     address
-jump:equal       address
-jump:not:smaller address
-jump:not:greater address
-jump:not:equal   address
+jump:sm          address
+jump:gr          address
+jump:eq          address
+jump:ns          address
+jump:ng          address
+jump:ne          address
 ```
 ### B. Subroutines:
   - Sometimes you have a task that needs to be completed many times in
@@ -251,10 +251,10 @@ jump:not:equal   address
     everything else will be out of reach until you return from the subroutine.
 
 ```
-subroutine:mark   name number_of_passed_values
-subroutine:return returned_value
+subroutine        name            number_of_passed_values
+return            returned_value
 execute           subroutine_name passed_values
-returninto        section
+return:into       section
 >>>               subroutine_name passed_values 
 ```
   - Note: subroutine:mark is literally just a Global Mark where we also make
@@ -264,16 +264,17 @@ returninto        section
   - Note: >> is a special syntax that makes it easy to string subroutines together by
     placing the return value from the last subroutine directly into the first Flexible
     Register and calling the next subroutine with its values from $2 on.
-
+  - Note: execute can be shortened to just x.
+  
   - Subroutines can also be executed conditionally with cmp:
 ```
-cmp section section
-execute:smaller     address passed_values...
-execute:greater     address passed_values...
-execute:equal       address passed_values...
-execute:not:smaller address passed_values...
-execute:not:greater address passed_values...
-execute:not:equal   address passed_values...
+cmp  section section
+x:sm address passed_values...
+x:gr address passed_values...
+x:eq address passed_values...
+x:ns address passed_values...
+x:ng address passed_values...
+x:ne address passed_values...
 ```
 
 ### C. Loops:
