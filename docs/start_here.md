@@ -174,8 +174,8 @@ stack:copy   count
   - cmp compares two values and bound will check a value with two other values to
     see if it is between them.
 ```  
-cmp    value value
-bound  value value:value
+cmp  value value
+chk  value value value
  ```
 
 ## IV. Transform Data:  
