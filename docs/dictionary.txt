@@ -1,0 +1,38 @@
+command: argcount: \n "assembly string"
+set: 2:  
+    "mov {1}, {2}"
+add: 2:
+    "add {1}, {2}"
+sub: 2:
+    "sub {1}, {2}"
+mul: 2:  
+    "mul {1}, {2}"
+div: 2:  
+    "div {1}, {2}"
+mod: 2:
+    "mod {1}, {2}"
+inc: 2:  
+    "inc {1}, {2}"
+dec: 2:  
+    "dec {1}, {2}"
+neg: 2:  
+    "neg {1}, {2}"
+xor: 2:  
+    "xor {1}, {2}"
+eor: 2:  
+    "or  {1}, {2}"
+and: 2: 
+    "and {1}, {2}"
+not: 2:  
+    "not {1}, {2}"
+shr: 2:  
+    "shr {1}, {2}"
+shl: 2:  
+    "shl {1}, {2}"
+cmp: 2:  
+    "cmp {1}, {2}"
+chk: 3: 
+    ".data
+      bound#rand dq {2}, {3}
+     .text
+      bound {1}, bound#rand"
