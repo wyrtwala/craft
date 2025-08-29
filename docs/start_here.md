@@ -301,6 +301,7 @@ sys:call  syscall_number args... //in order of course
 external:execute filepath
 ```
 
+## VII. Etcetera
   - [Next Steps](https://github.com/wyrtwala/craft/blob/main/docs/digging_deeper.md)  
   - [Assembly Dictionary](https://github.com/wyrtwala/craft/edit/main/src/dictionary.txt)
 
