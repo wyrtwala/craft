@@ -42,11 +42,11 @@ def setup():
         sys.exit(1)
     match sys.argv[1]:
         case "-a" | "--assembly" | "assembly":
-            global output_type = 1
+            output_type = 1
         case "-c" | "--compile"  | "compile":
-            global output_type = 2
+            output_type = 2
         case "-l" | "--library"  | "library":
-            global output_type = 3
+            output_type = 3
         case "-d" | "--define"   | "define":
             craft_define(sys.argv[2])
             sys.exit()
@@ -66,7 +66,7 @@ def setup():
                   "  -d, --define   : print craft command"
                   "  -h, --help     : display this message")
             sys.exit(1)
-    global input_file = sys.argv[2]
+    input_file = sys.argv[2]
     if output_type == 0:
         print("craft needs to know in what format to output your code")
         sys.exit(1)
@@ -74,8 +74,8 @@ def setup():
         print("craft needs an output file for the library")
         sys.exit(1)
     if sys.argc == 3:
-        global output_file = sys.argv[3]
-    global input = open(input_file, 'r+')
+        output_file = sys.argv[3]
+        input = open(input_file, 'r+')
 
 
 def next_tok():
@@ -86,6 +86,8 @@ def next_tok():
 
 def check_dictionary():
     #TODO
+    print("checking")
+
 
 def parse():
     cur_tok = next_tok()
@@ -94,9 +96,9 @@ def parse():
         cut_tok = next_tok()
         #TODO
 
-def compile():
-    if   output_type == 1:
-        break
+def compile_craft():
+    if output_type == 1:
+        print(assembly_string, output_file)
     elif output_type == 2:
         asm = open("craft.asm", 'w+')
         print(assembly_string, asm)
@@ -104,17 +106,17 @@ def compile():
         os.system(compile_command)
         close(asm)
         os.remove("craft.asm")
-    else:
+    elif output_type == 3:
         lib = open(output_file, 'w')
         print("%ifndef ", output_file, "\n%define ", output_file, "\n\n\n", file=lib)
         print(assembly_string, file=lib)
         print("%endif \n\n", file=lib)
+
 #######################################################################
 # CRAFT MAIN
 #######################################################################
 if __name__ == "__main__":
     setup()
     parse()
-    compile()
-    output()
+    compile_craft()
     sys.exit(0)
