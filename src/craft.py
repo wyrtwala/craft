@@ -13,9 +13,9 @@ import os
 #######################################################################
 input_file  = None
 input       = None
+dictionary  = None
 output_file = "/dev/stdout"
 output_type = 0
-
 
 #######################################################################
 # LISTS
@@ -42,6 +42,16 @@ class Token:
 #######################################################################
 # FUNCTIONS
 #######################################################################
+def craft_define(word):
+    count, definition = check_dictionary(word)
+    if count != -1:
+        print(f"{word} does exist, it takes {count} arguments and is defined as: \n{definition}")
+        sys.exit(0)
+    else:
+        print{f"{word} does not exist")
+        sys.exit(0)
+
+
 def setup():
     if sys.argc < 2:
         print('craft needs at least two arguments')
@@ -64,18 +74,22 @@ def setup():
                   "  -d, --define   : print craft command"
                   "  -h, --help     : display this message")
         case _:
-            print("craft doesn't understand that argument\n")
-            print("craft format|define|help input_file [output_file]"
-                  "  -a, --assembly : output in assembly code"
-                  "  -c, --compile  : output in machine code"
-                  "  -l, --library  : output assembly in library format"
-                  "  -d, --define   : print craft command"
+            print("craft doesn't understand that argument")
+            print("craft format|define|help input_file [output_file]",
+                  "  -a, --assembly : output in assembly code",
+                  "  -c, --compile  : output in machine code",
+                  "  -l, --library  : output assembly in library format",
+                  "  -d, --define   : print craft command",
                   "  -h, --help     : display this message")
             sys.exit(1)
     input_file = sys.argv[2]
     input = open(input_file, 'rb')
     if input.closed:
-        print("craft couldn't open file\n")
+        print("craft couldn't open file")
+        sys.exit(1)
+    dictionary = open("dictionary.txt", 'rb')
+    if dictionary.closed:
+        print("craft couldn't open dictionary")
         sys.exit(1)
     if output_type == 0:
         print("craft needs to know in what format to output your code")
@@ -135,6 +149,24 @@ def next_tok():
                         next.set_word(word)
                         next.set_type(2)
                         return next
+            case b'(':
+                while True:
+                    x = input.read(1)
+                    if x == b')' | b'':
+                        next.set_word(word)
+                        next.set_type(3)
+                        return next
+                    else:
+                        word.append(x)
+            case b'{':
+                word.append(x)
+                while True:
+                    x = input.read(1)
+                    word.append(x)
+                    if x == b'}' | b'':
+                        next.set_word(word)
+                        next.set_type(4)
+                        return next
             case _:
                 word.append(x):
                 while True:
@@ -147,20 +179,38 @@ def next_tok():
                         word.append(x)
 
 
+def check_dictionary(word):
+    for line in dictionary:
+        line = line.strip().split()
+        if line[0] == word:
+            return ord(line[1]) ' '.join(line[2:])
+    return -1, str(-1)
+
+
 #######################################################################
 # TENTATIVE
 #######################################################################
 
-
-def check_dictionary():
-    print("checking")
-
-
 def parse():
-    cur_tok = next_tok()
+    cur_tok = Token()
+    cur_tok.set_word("root")
+    cur_tok.set_type(0)
     while cur_tok.type != 99:
-        check_dictionary(cur_tok)
         cut_tok = next_tok()
+        count, definition = check_dictionary(cur_tok)
+        if count < 0:
+            print("at line {line_count}: {cur_tok.word} is not defined")
+            sys.exit(3)
+        elif count = 0:
+            assembly_string += definition
+        else:
+            var_list = []
+            for i in range(count):
+                var_list.append(next_tok())
+                if var_list[i].type == 10:
+                    print("at {line_count} {cur_tok.word} expected {count} arguments, but only recieved {i + 1}")
+                    sys.exit(3)
+            assembly_string += definition.format(var_list[:])
         #TODO
 
 
