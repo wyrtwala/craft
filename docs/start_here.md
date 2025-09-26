@@ -11,11 +11,10 @@ A user side program can do only five things:        Recieve Data; Store Data; Co
   
   
 A computer can recieve data in only one way:                      Ports.  
-A computer can send data in only one way:                         Ports.  
-A computer can only Store Data internally in three places:        Storage Devices; Memory Devices; CPU.  
+A computer can send data in only one way:                         Ports.    
 
   
-A program has only two sets of Data:                              Compiled Data; Runtime Data.
+A program has two sets of Data:                                   Compiled Data; Runtime Data.
 A program sorts data into two types:                              Stack; Heap.
 ```
    
@@ -32,8 +31,8 @@ A program sorts data into two types:                              Stack; Heap.
      accepts information from the internet, etc.; that information is read
      or written through ports.
 ```
-port:recieve port   buffer
-port:send    buffer port
+recieve port   buffer
+send    buffer port
 ```
 ### C. Open & Close Ports:  
   - Your program can open a port by asking the kernel to give it a port to
@@ -41,11 +40,10 @@ port:send    buffer port
     the kernel use to let each other know which device or resource is being
     written to or read from.
 ```
-port:open:file          filepath
-port:open:socket:server protocol address port accept_count
-port:open:socket:client protocol address port
-port:open:device        device
-port:close              port
+open:file          name filepath
+open:socket        name address
+open:device        name device
+close:port         name
 ```
 ## II. Store Data:    
   
@@ -59,10 +57,10 @@ port:close              port
     run.  
     We will call this data: Hardcoded Data.
 ```
-hc:unit   name signed_integer
-hc:string name list_of_signed_integers
+unit   name signed_integer
+chain  name list_of_signed_integers
 ```
-  - Note: It is not possible to change the length of hc:string, only read
+  - Note: It is not possible to change the length of {chain}, only read
     or write to it.
   
 ### B. Runtime Data:  
@@ -74,21 +72,21 @@ hc:string name list_of_signed_integers
   - These can be split up into Global and Local units. Global units can be
     accessed from anywhere, but Local units can only be accessed within the
     subroutine (we will talk about these later) where they are placed.
-  - Note: hc:unit and hc:string are both global.
+  - Note: {unit} and {chain} are both global.
 ```
-rts:global name signed_integer
-rts:local  name signed_integer
+global name signed_integer
+local  name signed_integer
 ```
   - There is a special type of unit called a mark. A mark contains it's own
     address instead of some other value. They are used to navigate the code
     itself. We will talk about these later, but for now, this is how to make
     them:
 ```
-mark:global name
-mark:local  name
-mark:anonymous
+global name
+local  name
+anonymous
 ```
-  - Note: Global and Local marks work just like other Global and Local runtime
+  - Note: global and local marks work just like other global and local runtime
     units.
   
 #### 2. Mapped Memory:  
@@ -102,17 +100,17 @@ mark:anonymous
 ##### a. Small Maps:  
   - You can open very specifically sized maps with:
 ```
-map:new         unit size
-map:close       address size
-map:resize      address size
+new:map         unit size
+close:map       address size
+resize:map      address size
 ```
 ##### b. Page Aligned Maps:  
   - Or you can open memory along page lines (if your interested this is actually
     a very interesting thing to look further into) you can use:
 ```
-page:new    unit count
-page:close  address count
-page:resize address count
+new:page    unit count
+close:page  address count
+resize:page address count
 ```
   - Note: When you ask for a new map you must give a unit name because unit's
     value will be set to the address for the mapped memory.
@@ -162,11 +160,9 @@ $6
     the value at the top of the stack as well. We will see a bit more about the stack
     when we look at subroutines.
 ```
-stack:place   value
-stack:remove  value
-stack:copy   count
+stack    value
+unstack  value
 ```
-  - Note: count referse to how far down the stack the value you want is.
 
 ## III. Compare Data:  
   - Often in order to make decisions about what route to take through your code
@@ -191,9 +187,9 @@ chk  value value value
 ```
 set address/register value
 ```  
-  - Note: from here on out we will call the combination Heap/Register: a section
+  - Note: from here on out we will call the combination HeapAddress/Register: a "section".
   
-  - Sections may be transformed in place: 
+  - Data in sections may be transformed in-place: 
 ```
 add sections
 sub section section/value
@@ -255,7 +251,7 @@ subroutine        name            number_of_passed_values
 return            returned_value
 execute           subroutine_name passed_values
 return:into       section
->>>               subroutine_name passed_values 
+>>>               subroutine_name additional_passed_values 
 ```
   - Note: subroutine:mark is literally just a Global Mark where we also make
     note of how many passed values the subroutine will need. You could legitimately
@@ -282,8 +278,8 @@ x:ne address passed_values...
     Many times it is easier to use mark:anonymous. To jump to mark:anonymous
     use:
 ```
-anon:next
-anon:last
+jump:next
+jump:last
 ```
   - Note: these are used as the address in jmp.
 
@@ -293,7 +289,7 @@ anon:last
 ### A. System Calls:
   - Talk directly to the kernel.
 ```
-sys:call  syscall_number args... //in order of course
+system:call  syscall_number args... //in order of course
 ```
 
 ### B. Execute Foreign Code:
