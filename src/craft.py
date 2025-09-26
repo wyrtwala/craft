@@ -83,7 +83,7 @@ def setup():
                   "  -h, --help     : display this message")
             sys.exit(1)
     input_file = sys.argv[2]
-    input = open(input_file, 'rb')
+    while open(input_file, 'rb') as input
     if input.closed:
         print("craft couldn't open file")
         sys.exit(1)
@@ -213,6 +213,9 @@ def parse():
             assembly_string += definition.format(var_list[:])
         #TODO
 
+def translate(): # possibly use instead of parse
+    for line in input:
+        words = line.strip().split()
 
 
 
