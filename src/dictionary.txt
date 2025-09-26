@@ -1,23 +1,29 @@
-set 2 mov {0}, {1}
-add 2 add {0}, {1}
-sub 2 sub {0}, {1}
-mul 2 mul {0}, {1}
-div 2 div {0}, {1}
-mod 2 mod {0}, {1}
-inc 2 inc {0}, {1}
-dec 2 dec {0}, {1}
-neg 2 neg {0}, {1}
-xor 2 xor {0}, {1}
-eor 2 or  {0}, {1}
-and 2 and {0}, {1}
-not 2 not {0}, {1}
-shr 2 shr {0}, {1}
-shl 2 shl {0}, {1}
-cmp 2 cmp {0}, {1}
-chk 3 .data \nbound#rand dq {1}, {2} \n.text \nbound {0}, bound#rand
-
-
-
+set 2 mov {0}, {1}\n
+add 2 add {0}, {1}\n
+sub 2 sub {0}, {1}\n
+mul 2 mul {0}, {1}\n
+div 2 div {0}, {1}\n
+mod 2 mod {0}, {1}\n
+inc 2 inc {0}, {1}\n
+dec 2 dec {0}, {1}\n
+neg 2 neg {0}, {1}\n
+xor 2 xor {0}, {1}\n
+eor 2 or  {0}, {1}\n
+and 2 and {0}, {1}\n
+not 2 not {0}, {1}\n
+shr 2 shr {0}, {1}\n
+shl 2 shl {0}, {1}\n
+cmp 2 cmp {0}, {1}\n
+data:hc 2 .data \n  {1} {2} \n.text\n
+data:global 2 {1} = {2}\n
+data:local 2 local {1} = {2}\n
+mark:global 1 {1}:\n
+mark:local 1 local {1}:\n
+mark:anonymous 0 @@:\n
+send:unit 2 \n  mov rax, 1\n  mov rdi, {2}\n    lea rsi, {1}\n  mov rdx, 1\n  syscall\n
+send:chain 3 \n  mov rax, 1\n  mov rdi, {3}\n    lea rsi, {1}\n  mov rdx, {2}\n  syscall\n
+recieve:unit 2 \n  mov rax, 0\n  mov rdi, {2}\n    lea rsi, {1}\n  mov rdx, 1\n  syscall\n
+recieve:chain 3 \n  mov rax, 0\n  mov rdi, {3}\n    lea rsi, {1}\n  mov rdx, {2}\n  syscall\n
 
 
 
