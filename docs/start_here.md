@@ -57,10 +57,9 @@ close:port         name
     run.  
     We will call this data: Hardcoded Data.
 ```
-unit   name signed_integer
-chain  name list_of_signed_integers
+data:hc name signed_integer/list_of_signed_integers
 ```
-  - Note: It is not possible to change the length of {chain}, only read
+  - Note: It is not possible to change the length of {data:hc}, only read
     or write to it.
   
 ### B. Runtime Data:  
@@ -74,17 +73,17 @@ chain  name list_of_signed_integers
     subroutine (we will talk about these later) where they are placed.
   - Note: {unit} and {chain} are both global.
 ```
-global name signed_integer
-local  name signed_integer
+data:global name signed_integer
+data:local  name signed_integer
 ```
   - There is a special type of unit called a mark. A mark contains it's own
     address instead of some other value. They are used to navigate the code
     itself. We will talk about these later, but for now, this is how to make
     them:
 ```
-global name
-local  name
-anonymous
+mark:global name
+mark:local  name
+mark:anonymous
 ```
   - Note: global and local marks work just like other global and local runtime
     units.
