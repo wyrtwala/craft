@@ -134,7 +134,7 @@ def next_tok():
                 next.set_word(x)
                 next.set_type(99)
                 return next
-             case b'\n':
+            case b'\n':
                 next.set_word(x)
                 next.set_type(10)
                 return next
