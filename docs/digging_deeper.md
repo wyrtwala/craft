@@ -18,11 +18,11 @@ $1:1
   - If you need to fill in a register that you only set to a 4 byte or smaller
     value, you can use:
 ```
-reg:fill register original_size
+reg:fill register original_size fill
 ````
   - For the opposite:
 ```
-reg:rend register new size
+reg:rend register new_size fill
 ```
 
 ### C. Registers for Numbers with Decimal Points:
