@@ -256,7 +256,7 @@ return:into       section
     note of how many passed values the subroutine will need. You could legitimately
     just use a mark:global if you wanted to remember how many values to pass.
   - Note: returninto placed the returned value from the last subroutine into a section.
-  - Note: >> is a special syntax that makes it easy to string subroutines together by
+  - Note: >>> is a special syntax that makes it easy to string subroutines together by
     placing the return value from the last subroutine directly into the first Flexible
     Register and calling the next subroutine with its values from $2 on.
   - Note: execute can be shortened to just x.
