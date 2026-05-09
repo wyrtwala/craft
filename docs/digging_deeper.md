@@ -56,8 +56,8 @@ II. Formatting
     the decimal number 97, the hexadecimal number 64 or binary 1100001? Which
     to your computer are all exactly the same thing.
   - So we have a function that turns a value into the kind of ascii format you
-    want to print.
+    want to send.
 ```
-print:format value format port
+send:format value format port
 ```
   - Note: format can be ascii, decimal, hex, oct or binary
