@@ -186,7 +186,7 @@ bound  value value value
 ```
 set address/register value
 ```  
-  - Note: from here on out we will call the combination HeapAddress/Register: a "section".
+  - Note: from here on out we will call the combination Heap_Address/Register: a "section".
   
   - Data in sections may be transformed in-place: 
 ```
