@@ -29,7 +29,7 @@ reg:rend register new_size
   - Computers don't have any idea what numeric precision or decimal points are,
     and therefore are horrible at calculations involving them. For this reason
     I consider them a bad idea in general in programming, but for the sake of
-    completeness I will put a way to access the registeres that are specially
+    completeness I will add a way to access the registeres that are specially
     made for dealing with this type of numbers.
 ```
 xmm:0
