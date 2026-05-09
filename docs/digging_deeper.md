@@ -22,7 +22,7 @@ reg:fill register original_size fill
 ````
   - For the opposite:
 ```
-reg:rend register new_size fill
+reg:rend register new_size
 ```
 
 ### C. Registers for Numbers with Decimal Points:
